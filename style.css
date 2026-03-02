@@ -37,14 +37,14 @@ header {
     left: 0;
     width: 100%;
     z-index: 1000;
-    padding: 20px 5%;
-    /* Optimized spacing */
+    padding: 15px 5%;
+    /* Tightened for Laptop */
     display: flex;
     justify-content: space-between;
     align-items: center;
     transition: var(--transition);
     background: #ffffff;
-    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
 }
 
 header.scrolled {
@@ -60,16 +60,16 @@ header.scrolled {
 }
 
 .logo-container img {
-    height: 220px;
-    /* Restored Massive Premium Size */
+    height: 180px;
+    /* Optimized for Laptop Premium Feel */
     width: auto;
     object-fit: contain;
     transition: var(--transition);
 }
 
 header.scrolled .logo-container img {
-    height: 140px;
-    /* Still very prominent when scrolled */
+    height: 100px;
+    /* Compact & Clear for Scrolled Laptop */
 }
 
 .nav-links {
