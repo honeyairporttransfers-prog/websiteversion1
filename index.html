@@ -497,16 +497,12 @@
 
         // Management Login System
         function login() {
-            // Mobile Restriction Check
-            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-                alert("SECURITY NOTICE: The Management Portal is only accessible via Desktop Web Browsers for security and analytics precision.");
-                return;
-            }
-
             const email = document.getElementById('loginEmail').value.trim();
             const pass = document.getElementById('loginPass').value.trim();
 
-            if (email.toLowerCase() === "honeyairporttransfers@gmail.com" && pass === "Honey102799") {
+            console.log("Login Attempt:", email, pass); // Debugging
+
+            if (email === "honeyairporttransfers@gmail.com" && pass === "Honey102799") {
                 const portalLogin = document.getElementById('portal-login');
                 const portalData = document.getElementById('portal-data');
                 renderBookings();
@@ -514,7 +510,7 @@
                 portalLogin.style.display = 'none';
                 portalData.style.display = 'block';
             } else {
-                alert("ACCESS DENIED: Authentication Failed. Please check your credentials.");
+                alert("CRITICAL AUTH FAILURE: Incorrect License Credentials.");
             }
         }
 
