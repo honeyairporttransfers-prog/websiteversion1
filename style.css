@@ -889,9 +889,21 @@ footer {
     }
 
     .cta-container {
-        display: none;
-        /* Hide top CTA on mobile to save space */
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        margin-top: 15px;
     }
+
+    .btn-whatsapp {
+        width: 100%;
+        justify-content: center;
+        padding: 12px 20px;
+        font-size: 0.9rem;
+    }
+
+    /* Hide top CTA on mobile to save space */
+
 
     .hero {
         height: 80vh;

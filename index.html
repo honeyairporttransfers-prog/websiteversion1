@@ -27,7 +27,6 @@
             <li><a href="#home">Home</a></li>
             <li><a href="#fleet">Our Elite Fleet</a></li>
             <li><a href="#about">The Elite Standard</a></li>
-            <li><a href="#" onclick="openModal('portal-modal')">Management</a></li>
         </ul>
         <div class="cta-container">
             <a href="https://wa.me/447443880040" class="btn-whatsapp">
@@ -394,6 +393,17 @@
                 <button class="btn-master" onclick="login()" style="padding: 15px;">LOGIN TO PORTAL</button>
             </div>
             <div id="portal-data" style="display: none;">
+                <div
+                    style="display: flex; gap: 15px; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 1px solid #eee;">
+                    <button onclick="exportData('csv')" class="btn-master"
+                        style="padding: 10px 20px; font-size: 0.8rem; background: #2e7d32;">EXPORT EXCEL (CSV)</button>
+                    <button onclick="exportData('txt')" class="btn-master"
+                        style="padding: 10px 20px; font-size: 0.8rem; background: #333;">EXPORT TEXT FILE</button>
+                    <button onclick="renderBookings()" class="btn-master"
+                        style="padding: 10px 20px; font-size: 0.8rem; background: var(--accent); color: #000;">REFRESH
+                        DATA</button>
+                </div>
+                <div id="analyticsDashboard" class="analytics-grid" style="margin-bottom: 30px;"></div>
                 <div id="bookingList"></div>
             </div>
         </div>
@@ -611,6 +621,57 @@
 
             alert(`DATA SYNCED: Assignment for ${bookings[index].id} is successful.`);
             renderBookings();
+        }
+
+        function exportData(type) {
+            const bookings = JSON.parse(localStorage.getItem('luxury_honey_bookings') || '[]');
+            if (bookings.length === 0) {
+                alert("No data available to export.");
+                return;
+            }
+
+            let content = "";
+            let fileName = `Honey_Elite_Bookings_${new Date().toISOString().split('T')[0]}`;
+            let mimeType = "text/plain";
+
+            if (type === 'csv') {
+                const headers = ["ID", "Passenger", "Phone", "Pickup", "Destination", "Trip", "Pax", "Bags", "Date", "Hour", "Vehicle", "Driver", "Plate"];
+                content = headers.join(",") + "\n";
+                bookings.forEach(b => {
+                    const row = [
+                        b.id, b.passengerName, b.passengerPhone, b.pincode, b.destination,
+                        b.tripType, b.passengers, b.luggage, b.date, b.time,
+                        b.vehicle, b.driver || 'N/A', b.carPlate || 'N/A'
+                    ];
+                    content += row.map(v => `"${String(v).replace(/"/g, '""')}"`).join(",") + "\n";
+                });
+                fileName += ".csv";
+                mimeType = "text/csv";
+            } else {
+                bookings.forEach(b => {
+                    content += `------------------------------------------\n`;
+                    content += `RESERVATION ID: ${b.id}\n`;
+                    content += `PASSENGER: ${b.passengerName}\n`;
+                    content += `CONTACT: ${b.passengerPhone}\n`;
+                    content += `PICKUP: ${b.pincode}\n`;
+                    content += `DESTINATION: ${b.destination}\n`;
+                    content += `SCHEDULE: ${b.date} @ ${b.time}\n`;
+                    content += `VEHICLE: ${b.vehicle}\n`;
+                    content += `DRIVER: ${b.driver || 'PENDING'}\n`;
+                    content += `PLATE: ${b.carPlate || 'PENDING'}\n`;
+                });
+                fileName += ".txt";
+            }
+
+            const blob = new Blob([content], { type: mimeType });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement("a");
+            link.setAttribute("href", url);
+            link.setAttribute("download", fileName);
+            link.style.visibility = 'hidden';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
         }
 
         // Booking System
