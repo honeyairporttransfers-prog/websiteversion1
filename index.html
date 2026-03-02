@@ -62,11 +62,20 @@
                         <i class="fas fa-map-marker-alt"></i>
                         <select id="destination" required>
                             <option value="" disabled selected>To: Postcode / Street Name / Airport Name</option>
-                            <option value="Heathrow Terminal 5">Heathrow T5 (LHR)</option>
-                            <option value="Heathrow Terminal 2/3">Heathrow T2 / T3 (LHR)</option>
-                            <option value="Heathrow Terminal 4">Heathrow T4 (LHR)</option>
-                            <option value="London City Airport">London City (LCY)</option>
-                            <option value="Gatwick Airport">Gatwick (LGW)</option>
+                            <option value="Heathrow Terminal 1">Heathrow Terminal 1</option>
+                            <option value="Heathrow Terminal 2">Heathrow Terminal 2</option>
+                            <option value="Heathrow Terminal 3">Heathrow Terminal 3</option>
+                            <option value="Heathrow Terminal 4">Heathrow Terminal 4</option>
+                            <option value="Heathrow Terminal 5">Heathrow Terminal 5</option>
+                            <option value="Gatwick North Terminal">Gatwick North Terminal</option>
+                            <option value="Gatwick South Terminal">Gatwick South Terminal</option>
+                            <option value="London City Airport">London City Airport (LCY)</option>
+                            <option value="Luton Airport">Luton Airport (LTN)</option>
+                            <option value="Stansted Airport">Stansted Airport (STN)</option>
+                            <option value="Oxford City Center">Oxford City Center</option>
+                            <option value="Oxford University / Colleges">Oxford University / Colleges</option>
+                            <option value="Headington / Cowley">Headington / Cowley</option>
+                            <option value="Summertown / Kidlington">Summertown / Kidlington</option>
                         </select>
                     </div>
                 </div>
@@ -310,7 +319,7 @@
             <!-- First Class XL -->
             <div class="fleet-card">
                 <div class="fleet-img">
-                    <img src="https://cdn.prod.website-files.com/66113eb5d77d90c9967ea0b7/66113ea793f4ee29ca31a31d_XL.png"
+                    <img src="https://cdn.prod.website-files.com/66113eb5d77d90c9967ea0b7/66113eb5d77d90c9967ea129_First-Class-XL.jpg"
                         alt="First Class XL">
                 </div>
                 <div class="fleet-info">
@@ -494,10 +503,10 @@
                 return;
             }
 
-            const email = document.getElementById('loginEmail').value;
-            const pass = document.getElementById('loginPass').value;
+            const email = document.getElementById('loginEmail').value.trim();
+            const pass = document.getElementById('loginPass').value.trim();
 
-            if (email === "honeyairporttransfers@gmail.com" && pass === "Honey102799") {
+            if (email.toLowerCase() === "honeyairporttransfers@gmail.com" && pass === "Honey102799") {
                 const portalLogin = document.getElementById('portal-login');
                 const portalData = document.getElementById('portal-data');
                 renderBookings();
@@ -505,7 +514,7 @@
                 portalLogin.style.display = 'none';
                 portalData.style.display = 'block';
             } else {
-                alert("ACCESS DENIED: Authentication Failed.");
+                alert("ACCESS DENIED: Authentication Failed. Please check your credentials.");
             }
         }
 
