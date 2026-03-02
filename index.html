@@ -19,6 +19,7 @@
     <header id="mainHeader">
         <div class="logo-container">
             <img src="assets/logo-xl.png" alt="Honey Airport Transfers Ltd Logo">
+            <span class="company-name-header">HONEY AIRPORT TRANSFERS LTD</span>
         </div>
         <div class="mobile-toggle" onclick="toggleMenu()">
             <i class="fas fa-bars"></i>
@@ -40,163 +41,172 @@
     <section class="hero" id="home">
         <img src="assets/honey-hero-ultra.png" class="hero-video-bg" alt="Luxury Jet and Chauffeur">
         <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <p>Honey Airport Transfers Ltd</p>
-            <h1>The Gold <span>Standard</span></h1>
-            <p>Redefining Oxford to Heathrow Chauffeur Excellence</p>
-        </div>
-    </section>
-
-    <!-- Interactive Elite Booking -->
-    <section class="booking-section">
-        <div class="booking-card">
-            <form class="booking-form" id="bookingForm">
-                <!-- Location Row -->
-                <div class="input-row">
-                    <div class="luxe-input-wrapper">
-                        <i class="fas fa-location-arrow"></i>
-                        <input type="text" id="pincode" placeholder="From: Enter Location or Postcode such as..."
-                            required>
-                    </div>
-                    <div class="luxe-input-wrapper">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <select id="destination" required>
-                            <option value="" disabled selected>To: Postcode / Street Name / Airport Name</option>
-                            <option value="Heathrow Terminal 1">Heathrow Terminal 1</option>
-                            <option value="Heathrow Terminal 2">Heathrow Terminal 2</option>
-                            <option value="Heathrow Terminal 3">Heathrow Terminal 3</option>
-                            <option value="Heathrow Terminal 4">Heathrow Terminal 4</option>
-                            <option value="Heathrow Terminal 5">Heathrow Terminal 5</option>
-                            <option value="Gatwick North Terminal">Gatwick North Terminal</option>
-                            <option value="Gatwick South Terminal">Gatwick South Terminal</option>
-                            <option value="London City Airport">London City Airport (LCY)</option>
-                            <option value="Luton Airport">Luton Airport (LTN)</option>
-                            <option value="Stansted Airport">Stansted Airport (STN)</option>
-                            <option value="Oxford City Center">Oxford City Center</option>
-                            <option value="Oxford University / Colleges">Oxford University / Colleges</option>
-                            <option value="Headington / Cowley">Headington / Cowley</option>
-                            <option value="Summertown / Kidlington">Summertown / Kidlington</option>
-                        </select>
-                    </div>
-                </div>
-
-                <!-- Trip Selection -->
-                <div class="trip-selection">
-                    <label class="trip-type">
-                        <input type="radio" name="tripType" value="One Way" checked>
-                        <span>One Way</span>
-                    </label>
-                    <label class="trip-type">
-                        <input type="radio" name="tripType" value="Round Trip">
-                        <span>Round Trip</span>
-                    </label>
-                </div>
-
-                <!-- Counter Grid -->
-                <div class="counter-grid">
-                    <div class="counter-group">
-                        <label>Passengers</label>
-                        <div class="counter-ctrl">
-                            <button type="button" class="btn-counter"
-                                onclick="updateCounter('passengerCount', -1)">-</button>
-                            <div class="counter-value" id="passengerDisplay">1</div>
-                            <button type="button" class="btn-counter"
-                                onclick="updateCounter('passengerCount', 1)">+</button>
-                            <input type="hidden" id="passengerCount" value="1">
+        <div class="hero-container">
+            <!-- Left Side: Interactive Elite Booking -->
+            <div class="hero-booking-side">
+                <div class="booking-card">
+                    <form class="booking-form" id="bookingForm">
+                        <!-- Location Row -->
+                        <div class="input-row">
+                            <div class="luxe-input-wrapper">
+                                <i class="fas fa-location-arrow"></i>
+                                <input type="text" id="pincode" placeholder="From: Enter Location or Postcode..."
+                                    required>
+                            </div>
+                            <div class="luxe-input-wrapper">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <select id="destination" required>
+                                    <option value="" disabled selected>To: Airport / Street / City</option>
+                                    <option value="Heathrow Terminal 1">Heathrow Terminal 1</option>
+                                    <option value="Heathrow Terminal 2">Heathrow Terminal 2</option>
+                                    <option value="Heathrow Terminal 3">Heathrow Terminal 3</option>
+                                    <option value="Heathrow Terminal 4">Heathrow Terminal 4</option>
+                                    <option value="Heathrow Terminal 5">Heathrow Terminal 5</option>
+                                    <option value="Gatwick North Terminal">Gatwick North Terminal</option>
+                                    <option value="Gatwick South Terminal">Gatwick South Terminal</option>
+                                    <option value="London City Airport">London City Airport (LCY)</option>
+                                    <option value="Luton Airport">Luton Airport (LTN)</option>
+                                    <option value="Stansted Airport">Stansted Airport (STN)</option>
+                                    <option value="Oxford City Center">Oxford City Center</option>
+                                    <option value="Oxford University / Colleges">Oxford University / Colleges</option>
+                                    <option value="Headington / Cowley">Headington / Cowley</option>
+                                    <option value="Summertown / Kidlington">Summertown / Kidlington</option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div class="counter-group">
-                        <label>Luggages</label>
-                        <div class="counter-ctrl">
-                            <button type="button" class="btn-counter"
-                                onclick="updateCounter('luggageCount', -1)">-</button>
-                            <div class="counter-value" id="luggageDisplay">1</div>
-                            <button type="button" class="btn-counter"
-                                onclick="updateCounter('luggageCount', 1)">+</button>
-                            <input type="hidden" id="luggageCount" value="1">
-                        </div>
-                    </div>
-                </div>
 
-                <!-- DateTime Well -->
-                <div class="datetime-well">
-                    <div class="well-group">
-                        <label>Date:</label>
-                        <div class="well-input">
-                            <input type="date" id="travelDate" required>
+                        <!-- Trip Selection -->
+                        <div class="trip-selection">
+                            <label class="trip-type">
+                                <input type="radio" name="tripType" value="One Way" checked>
+                                <span>One Way</span>
+                            </label>
+                            <label class="trip-type">
+                                <input type="radio" name="tripType" value="Round Trip">
+                                <span>Round Trip</span>
+                            </label>
                         </div>
-                    </div>
-                    <div class="well-group" style="flex: 0.5;">
-                        <label>Hour:</label>
-                        <div class="well-input">
-                            <select id="travelHour" required>
-                                <option value="00">00</option>
-                                <option value="01">01</option>
-                                <option value="02">02</option>
-                                <option value="03">03</option>
-                                <option value="04">04</option>
-                                <option value="05">05</option>
-                                <option value="06">06</option>
-                                <option value="07">07</option>
-                                <option value="08">08</option>
-                                <option value="09">09</option>
-                                <option value="10">10</option>
-                                <option value="11">11</option>
-                                <option value="12">12</option>
-                                <option value="13">13</option>
-                                <option value="14">14</option>
-                                <option value="15">15</option>
-                                <option value="16">16</option>
-                                <option value="17">17</option>
-                                <option value="18">18</option>
-                                <option value="19">19</option>
-                                <option value="20">20</option>
-                                <option value="21">21</option>
-                                <option value="22">22</option>
-                                <option value="23">23</option>
+
+                        <!-- Counter Grid -->
+                        <div class="counter-grid">
+                            <div class="counter-group">
+                                <label>Passengers</label>
+                                <div class="counter-ctrl">
+                                    <button type="button" class="btn-counter"
+                                        onclick="updateCounter('passengerCount', -1)">-</button>
+                                    <div class="counter-value" id="passengerDisplay">1</div>
+                                    <button type="button" class="btn-counter"
+                                        onclick="updateCounter('passengerCount', 1)">+</button>
+                                    <input type="hidden" id="passengerCount" value="1">
+                                </div>
+                            </div>
+                            <div class="counter-group">
+                                <label>Luggages</label>
+                                <div class="counter-ctrl">
+                                    <button type="button" class="btn-counter"
+                                        onclick="updateCounter('luggageCount', -1)">-</button>
+                                    <div class="counter-value" id="luggageDisplay">1</div>
+                                    <button type="button" class="btn-counter"
+                                        onclick="updateCounter('luggageCount', 1)">+</button>
+                                    <input type="hidden" id="luggageCount" value="1">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- DateTime Well -->
+                        <div class="datetime-well">
+                            <div class="well-group">
+                                <label>Date:</label>
+                                <div class="well-input">
+                                    <input type="date" id="travelDate" required>
+                                </div>
+                            </div>
+                            <div class="well-group" style="flex: 0.5;">
+                                <label>Hour:</label>
+                                <div class="well-input">
+                                    <select id="travelHour" required>
+                                        <option value="00">00</option>
+                                        <option value="01">01</option>
+                                        <option value="02">02</option>
+                                        <option value="03">03</option>
+                                        <option value="04">04</option>
+                                        <option value="05">05</option>
+                                        <option value="06">06</option>
+                                        <option value="07">07</option>
+                                        <option value="08">08</option>
+                                        <option value="09">09</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                        <option value="13">13</option>
+                                        <option value="14">14</option>
+                                        <option value="15">15</option>
+                                        <option value="16">16</option>
+                                        <option value="17">17</option>
+                                        <option value="18">18</option>
+                                        <option value="19">19</option>
+                                        <option value="20">20</option>
+                                        <option value="21">21</option>
+                                        <option value="22">22</option>
+                                        <option value="23">23</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="well-group" style="flex: 0.5;">
+                                <label>Minute:</label>
+                                <div class="well-input">
+                                    <select id="travelMinute" required>
+                                        <option value="00">00</option>
+                                        <option value="15">15</option>
+                                        <option value="30">30</option>
+                                        <option value="45">45</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Contact & Vehicle Row -->
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px;">
+                            <div class="luxe-input-wrapper" style="height: 45px;">
+                                <i class="fas fa-user-circle"></i>
+                                <input type="text" id="passengerName" placeholder="Full Name" required>
+                            </div>
+                            <div class="luxe-input-wrapper" style="height: 45px;">
+                                <i class="fas fa-phone"></i>
+                                <input type="tel" id="passengerPhone" placeholder="Phone Number" required>
+                            </div>
+                        </div>
+
+                        <div class="luxe-input-wrapper" style="height: 50px; margin-top: 15px;">
+                            <i class="fas fa-car-side"></i>
+                            <select id="vehicleType" required style="background: transparent; font-weight: 600;">
+                                <option value="" disabled selected>Choose Your Travel Class</option>
+                                <option value="Economy Saloon">Economy Saloon</option>
+                                <option value="Business Class Saloon">Business Class Saloon</option>
+                                <option value="First Class Saloon">First Class Saloon</option>
+                                <option value="Economy XL">Economy XL (Up to 5 Pax)</option>
+                                <option value="Business Class XL">Business Class XL (Up to 7 Pax)</option>
+                                <option value="First Class XL">First Class XL (Jet Class)</option>
                             </select>
                         </div>
-                    </div>
-                    <div class="well-group" style="flex: 0.5;">
-                        <label>Minute:</label>
-                        <div class="well-input">
-                            <select id="travelMinute" required>
-                                <option value="00">00</option>
-                                <option value="15">15</option>
-                                <option value="30">30</option>
-                                <option value="45">45</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- Contact & Vehicle Row -->
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px;">
-                    <div class="luxe-input-wrapper" style="height: 50px;">
-                        <i class="fas fa-user-circle"></i>
-                        <input type="text" id="passengerName" placeholder="Passenger Full Name" required>
-                    </div>
-                    <div class="luxe-input-wrapper" style="height: 50px;">
-                        <i class="fas fa-phone"></i>
-                        <input type="tel" id="passengerPhone" placeholder="Contact Phone Number" required>
-                    </div>
+                        <button type="submit" class="btn-luxe-book">Secure Elite Booking</button>
+                    </form>
                 </div>
+            </div>
 
-                <div class="luxe-input-wrapper" style="height: 50px; margin-top: 20px;">
-                    <i class="fas fa-car-side"></i>
-                    <select id="vehicleType" required style="background: transparent; font-weight: 600;">
-                        <option value="" disabled selected>Choose Your Travel Class</option>
-                        <option value="Economy Saloon">Economy Saloon</option>
-                        <option value="Business Class Saloon">Business Class Saloon</option>
-                        <option value="First Class Saloon">First Class Saloon</option>
-                        <option value="Economy XL">Economy XL (Up to 5 Pax)</option>
-                        <option value="Business Class XL">Business Class XL (Up to 7 Pax)</option>
-                        <option value="First Class XL">First Class XL (Jet Class)</option>
-                    </select>
+            <!-- Right Side: Marketing Impact -->
+            <div class="hero-content">
+                <p class="hero-subtitle">Honey Airport Transfers Ltd</p>
+                <h1>ELITE AIRPORT<br><span>TRANSFERS</span></h1>
+                <p class="hero-description">Oxford’s Premier 24/7 Chauffeur Service for Heathrow, Gatwick & Beyond. 30+
+                    Years of Unrivalled Excellence.</p>
+                <div class="hero-trust-badges">
+                    <div class="badge"><i class="fas fa-plane-arrival"></i> Heathrow Specialists</div>
+                    <div class="badge"><i class="fas fa-clock"></i> 24/7 Availability</div>
+                    <div class="badge"><i class="fas fa-award"></i> Gold Standard</div>
                 </div>
-
-                <button type="submit" class="btn-luxe-book">Get Quote / Book</button>
-            </form>
+            </div>
         </div>
     </section>
 
