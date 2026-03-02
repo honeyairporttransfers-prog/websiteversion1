@@ -348,44 +348,7 @@
         <i class="fas fa-phone-alt"></i> 24/7 EMERGENCY: +44 7443 880040
     </a>
 
-    <!-- Management Portal Modal -->
-    <div id="portal-modal" class="modal">
-        <div class="modal-content" style="width: 700px; max-width: 90%; max-height: 90vh; overflow-y: auto;">
-            <span style="position: absolute; top: 25px; right: 25px; cursor: pointer; color: #aaa;"
-                onclick="closeModal('portal-modal')">&times;</span>
-            <h2 style="font-size: 1.8rem; font-weight: 900; margin-bottom: 20px;">ACCESS MANAGEMENT</h2>
-            <div id="portal-login">
-                <p style="color: #666; margin-bottom: 30px;">Enter your credentials to manage transfers.</p>
-                <div class="form-group" style="margin-bottom: 20px;">
-                    <label>AUTHENTICATED EMAIL</label>
-                    <div class="input-wrapper">
-                        <input type="email" id="loginEmail" placeholder="e.g. director@elite.com">
-                    </div>
-                </div>
-                <div class="form-group" style="margin-bottom: 20px;">
-                    <label>SECURE PASSWORD</label>
-                    <div class="input-wrapper">
-                        <input type="password" id="loginPass" placeholder="••••••••">
-                    </div>
-                </div>
-                <button class="btn-master" onclick="login()" style="padding: 15px;">LOGIN TO PORTAL</button>
-            </div>
-            <div id="portal-data" style="display: none;">
-                <div
-                    style="display: flex; gap: 15px; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 1px solid #eee;">
-                    <button onclick="exportData('csv')" class="btn-master"
-                        style="padding: 10px 20px; font-size: 0.8rem; background: #2e7d32;">EXPORT EXCEL (CSV)</button>
-                    <button onclick="exportData('txt')" class="btn-master"
-                        style="padding: 10px 20px; font-size: 0.8rem; background: #333;">EXPORT TEXT FILE</button>
-                    <button onclick="renderBookings()" class="btn-master"
-                        style="padding: 10px 20px; font-size: 0.8rem; background: var(--accent); color: #000;">REFRESH
-                        DATA</button>
-                </div>
-                <div id="analyticsDashboard" class="analytics-grid" style="margin-bottom: 30px;"></div>
-                <div id="bookingList"></div>
-            </div>
-        </div>
-    </div>
+    <!-- Management Modal Removed - Moved to portal.html -->
 
     <!-- Elite Footer -->
     <footer>
