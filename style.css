@@ -63,26 +63,21 @@ header.scrolled {
 }
 
 .company-name-header {
-    font-size: 1.2rem;
-    font-weight: 900;
-    color: var(--dark);
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    transition: var(--transition);
-    white-space: nowrap;
+    display: none;
+    /* Removed as requested */
 }
 
 .logo-container img {
-    height: 220px;
-    /* Restored Massive Premium Branding */
+    height: 440px;
+    /* 2X Massive Premium Branding */
     width: auto;
     object-fit: contain;
     transition: var(--transition);
 }
 
 header.scrolled .logo-container img {
-    height: 100px;
-    /* Scrolled Premium Size */
+    height: 150px;
+    /* Elegant Scrolled Scale */
 }
 
 header.scrolled .company-name-header {
@@ -220,8 +215,8 @@ header.scrolled .company-name-header {
     align-items: center;
     justify-content: flex-start;
     /* Start from top, not center */
-    padding-top: 250px;
-    /* Space for the 220px massive logo */
+    padding-top: 500px;
+    /* Deepened to reveal airplane background + accommodate 440px logo */
     color: white;
 }
 
@@ -955,13 +950,13 @@ footer {
     }
 
     .company-name-header {
-        font-size: 0.8rem;
-        font-weight: 800;
+        display: none;
+        /* Removed as requested */
     }
 
     .logo-container img {
-        height: 100px !important;
-        /* Impactful Mobile Logo */
+        height: 180px !important;
+        /* Impactful Proportional Mobile Logo */
     }
 
     .mobile-toggle {
