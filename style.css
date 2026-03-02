@@ -46,28 +46,27 @@ header {
 }
 
 header.scrolled {
-    background: rgba(255, 255, 255, 0.98);
-    padding: 20px 5%;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-    backdrop-filter: blur(10px);
+    background: #1a1a1a;
+    padding: 10px 5%;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    border-bottom: 2px solid var(--accent);
 }
 
 .logo-container {
-    flex: 1.5;
-    /* Give more space to logo */
+    flex: 1;
 }
 
 .logo-container img {
-    height: 280px;
-    /* Massively increased for elite branding and readability */
+    height: 120px;
+    /* Balanced Elite Size */
     width: auto;
     object-fit: contain;
     transition: var(--transition);
 }
 
 header.scrolled .logo-container img {
-    height: 120px;
-    /* Stay prominent even when scrolled */
+    height: 80px;
+    /* Compact but clear */
 }
 
 .nav-links {
@@ -111,24 +110,45 @@ header.scrolled .logo-container img {
 }
 
 .btn-whatsapp {
-    background: var(--dark);
+    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+    /* WhatsApp Vibrant Green */
     color: white;
-    padding: 14px 28px;
-    border-radius: 0;
+    padding: 16px 32px;
+    border-radius: 50px;
+    /* Modern Rounded */
     text-decoration: none;
-    font-weight: 700;
-    font-size: 0.8rem;
-    letter-spacing: 1px;
+    font-weight: 900;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
     transition: var(--transition);
-    border: 1px solid var(--dark);
+    border: 2px solid #D4AF37;
+    /* Gold contrast border */
+    box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+    animation: pulse-gold 2s infinite;
 }
 
 .btn-whatsapp:hover {
-    background: transparent;
-    color: var(--dark);
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 15px 35px rgba(212, 175, 55, 0.6);
+    background: #000;
+    color: var(--accent);
+}
+
+@keyframes pulse-gold {
+    0% {
+        box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7);
+    }
+
+    70% {
+        box-shadow: 0 0 0 15px rgba(212, 175, 55, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(212, 175, 55, 0);
+    }
 }
 
 /* Hero Section */
