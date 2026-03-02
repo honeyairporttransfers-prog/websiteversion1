@@ -198,64 +198,240 @@ header.scrolled .logo-container img {
     animation: reveal 1s var(--transition) 0.3s forwards;
 }
 
-/* Booking Widget */
+/* --- LUXE REVAMP: PIXEL-PERFECT MATCH --- */
 .booking-section {
     position: relative;
     z-index: 100;
-    margin-top: -120px;
-    padding: 0 8%;
+    margin-top: -150px;
+    padding: 0 5%;
+    display: flex;
+    justify-content: center;
 }
 
 .booking-card {
-    background: white;
-    padding: 60px;
-    box-shadow: var(--shadow-luxe);
+    background: #464646 !important;
+    /* Force matching the dark grey */
+    padding: 35px;
+    border-radius: 20px;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+    color: white;
+    width: 100%;
+    max-width: 600px;
 }
 
 .booking-form {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 30px;
-}
-
-.form-group {
     display: flex;
     flex-direction: column;
+    gap: 20px;
 }
 
-.form-group label {
-    font-size: 0.7rem;
-    font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: var(--text-muted);
-    margin-bottom: 12px;
-}
-
-.input-wrapper {
+.luxe-input-wrapper {
     position: relative;
-    border-bottom: 1px solid var(--grey-border);
-    padding: 10px 0;
+    background: white;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    height: 55px;
 }
 
-.input-wrapper i {
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--accent);
+.luxe-input-wrapper i {
+    color: #666;
+    font-size: 1.1rem;
+    width: 25px;
 }
 
-.input-wrapper input,
-.input-wrapper select {
-    width: 100%;
+.luxe-input-wrapper input,
+.luxe-input-wrapper select {
     border: none;
     outline: none;
-    font-size: 1.1rem;
-    font-weight: 600;
+    width: 100%;
+    font-size: 1rem;
+    color: #333;
     background: transparent;
     font-family: inherit;
-    padding-left: 30px;
+}
+
+/* Trip Selection */
+.trip-selection {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    margin: 5px 0;
+}
+
+.trip-type {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    font-size: 1.1rem;
+}
+
+.trip-type input[type="radio"] {
+    appearance: none;
+    width: 22px;
+    height: 22px;
+    border: 2px solid #00CDE1;
+    border-radius: 4px;
+    cursor: pointer;
+    background: transparent;
+}
+
+.trip-type input[type="radio"]:checked {
+    background: #00CDE1;
+}
+
+/* Counters Grid */
+.counter-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.counter-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.counter-group label {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #eee;
+}
+
+.counter-ctrl {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.btn-counter {
+    width: 42px;
+    height: 38px;
+    background: #00CDE1;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.5rem;
+    font-weight: 900;
+}
+
+.counter-value {
+    background: white;
+    color: #333;
+    width: 90px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 1.4rem;
+    border-radius: 8px;
+}
+
+/* Nested Well for Date/Time */
+.datetime-well {
+    background: #393939;
+    padding: 20px;
+    border-radius: 15px;
+    border: 1px solid #444;
+}
+
+.well-grid {
+    display: flex;
+    gap: 15px;
+    align-items: flex-end;
+}
+
+.well-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+}
+
+.well-group label {
+    font-size: 0.95rem;
+    color: #AAA;
+}
+
+.well-input {
+    background: white;
+    border-radius: 10px;
+    padding: 0 10px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+}
+
+.well-input input,
+.well-input select {
+    border: none;
+    outline: none;
+    width: 100%;
+    font-family: inherit;
+    font-size: 1.1rem;
+    color: #333;
+    padding-right: 10px;
+}
+
+/* Main Cyan Button */
+.btn-luxe-book {
+    background: #00CDE1;
+    color: white;
+    border: none;
+    padding: 20px;
+    border-radius: 10px;
+    font-size: 1.4rem;
+    font-weight: 900;
+    cursor: pointer;
+    margin-top: 10px;
+    box-shadow: 0 10px 30px rgba(0, 205, 225, 0.3);
+}
+
+@media (max-width: 600px) {
+    .booking-section {
+        margin-top: -80px;
+        padding: 0 3%;
+    }
+
+    .booking-card {
+        padding: 20px;
+    }
+
+    .trip-selection {
+        gap: 20px;
+    }
+
+    .counter-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .well-grid {
+        flex-direction: column;
+    }
+
+    .btn-counter {
+        width: 55px;
+        height: 50px;
+    }
+
+    .counter-value {
+        width: 100%;
+        height: 55px;
+    }
+
+    .luxe-input-wrapper {
+        height: 65px;
+    }
 }
 
 /* Vehicle Selector Grid */
