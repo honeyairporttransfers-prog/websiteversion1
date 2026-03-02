@@ -37,22 +37,22 @@ header {
     left: 0;
     width: 100%;
     z-index: 1000;
-    padding: 30px 5%;
+    padding: 20px 5%;
     /* Optimized spacing */
     display: flex;
     justify-content: space-between;
     align-items: center;
     transition: var(--transition);
-    background: rgba(0, 0, 0, 0.8);
-    /* Elite Dark Glassmorphism */
-    backdrop-filter: blur(15px);
+    background: #ffffff;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
 }
 
 header.scrolled {
-    background: #1a1a1a;
+    background: rgba(255, 255, 255, 0.98);
     padding: 10px 5%;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
     border-bottom: 2px solid var(--accent);
+    backdrop-filter: blur(10px);
 }
 
 .logo-container {
@@ -82,15 +82,14 @@ header.scrolled .logo-container img {
 
 .nav-links a {
     text-decoration: none;
-    color: var(--accent);
-    /* Gold links for visibility */
+    color: var(--dark);
+    /* High contrast dark for white bg */
     font-weight: 800;
-    font-size: 1rem;
-    letter-spacing: 2px;
+    font-size: 0.95rem;
+    letter-spacing: 1.5px;
     text-transform: uppercase;
     position: relative;
     padding-bottom: 5px;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .nav-links a::after {
