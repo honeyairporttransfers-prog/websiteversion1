@@ -56,12 +56,14 @@ header.scrolled {
 }
 
 .logo-container img {
-    height: 90px;
+    height: 180px;
+    /* Doubled from 90px for high-impact branding */
     transition: var(--transition);
 }
 
 header.scrolled .logo-container img {
-    height: 50px;
+    height: 100px;
+    /* Increased from 50px */
 }
 
 .nav-links {

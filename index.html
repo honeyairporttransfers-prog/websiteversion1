@@ -18,7 +18,7 @@
     <!-- Header Navigation -->
     <header id="mainHeader">
         <div class="logo-container">
-            <img src="assets/logo-xl.png" alt="Honey Airport Transfers Ltd Logo">
+            <img src="assets/logo.png" alt="Honey Airport Transfers Ltd Logo">
         </div>
         <ul class="nav-links">
             <li><a href="#home">Home</a></li>
@@ -27,7 +27,7 @@
             <li><a href="#" onclick="openModal('portal-modal')">Management</a></li>
         </ul>
         <div class="cta-container">
-            <a href="https://wa.me/441865999999" class="btn-whatsapp">
+            <a href="https://wa.me/447443880040" class="btn-whatsapp">
                 <i class="fab fa-whatsapp"></i> PRIORITY DISPATCH
             </a>
         </div>
@@ -132,7 +132,7 @@
 
     <!-- Management Portal Modal -->
     <div id="portal-modal" class="modal">
-        <div class="modal-content">
+        <div class="modal-content" style="width: 700px; max-width: 90%; max-height: 90vh; overflow-y: auto;">
             <span style="position: absolute; top: 25px; right: 25px; cursor: pointer; color: #aaa;"
                 onclick="closeModal('portal-modal')">&times;</span>
             <h2 style="font-size: 1.8rem; font-weight: 900; margin-bottom: 20px;">ACCESS MANAGEMENT</h2>
@@ -142,6 +142,12 @@
                     <label>AUTHENTICATED EMAIL</label>
                     <div class="input-wrapper">
                         <input type="email" id="loginEmail" placeholder="e.g. director@elite.com">
+                    </div>
+                </div>
+                <div class="form-group" style="margin-bottom: 20px;">
+                    <label>SECURE PASSWORD</label>
+                    <div class="input-wrapper">
+                        <input type="password" id="loginPass" placeholder="••••••••">
                     </div>
                 </div>
                 <button class="btn-master" onclick="login()" style="padding: 15px;">LOGIN TO PORTAL</button>
@@ -191,14 +197,131 @@
         </div>
     </footer>
 
-    <script src="app.js"></script>
     <script>
+        // Directly embedded booking logic for local compatibility
         window.addEventListener('scroll', () => {
             const header = document.getElementById('mainHeader');
             if (window.scrollY > 100) {
                 header.classList.add('scrolled');
             } else {
                 header.classList.remove('scrolled');
+            }
+        });
+
+        function selectVehicle(type, element) {
+            document.getElementById('vehicleType').value = type;
+            document.querySelectorAll('.vehicle-card').forEach(card => card.classList.remove('selected'));
+            element.classList.add('selected');
+        }
+
+        function openModal(id) {
+            document.getElementById(id).style.display = 'flex';
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).style.display = 'none';
+        }
+
+        // Management Login System
+        function login() {
+            const email = document.getElementById('loginEmail').value;
+            const pass = document.getElementById('loginPass').value;
+
+            if (email === "honeyairporttransfers@gmail.com" && pass === "Honey102799") {
+                const portalLogin = document.getElementById('portal-login');
+                const portalData = document.getElementById('portal-data');
+                renderBookings();
+
+                portalLogin.style.display = 'none';
+                portalData.style.display = 'block';
+            } else {
+                alert("ACCESS DENIED: Authentication Failed.");
+            }
+        }
+
+        function renderBookings() {
+            const bookingList = document.getElementById('bookingList');
+            const bookings = JSON.parse(localStorage.getItem('luxury_honey_bookings') || '[]');
+
+            if (bookings.length === 0) {
+                bookingList.innerHTML = "<p style='text-align: center; color: #999; padding: 40px;'>No elite reservations found.</p>";
+            } else {
+                bookingList.innerHTML = bookings.map((b, index) => `
+                    <div style="background: #fafafa; border-left: 4px solid #FFC107; padding: 25px; margin-bottom: 20px; position: relative; border-radius: 4px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+                        <div style="display: flex; justify-content: space-between; align-items: start;">
+                            <div>
+                                <strong style="color: #000; letter-spacing: 1px; font-size: 0.8rem;">MISSION REF: ${b.id}</strong><br>
+                                <span style="font-size: 1.2rem; font-weight: 900; color: #000; display: block; margin: 10px 0;">${b.pincode} <i class="fas fa-arrow-right" style="font-size: 0.8rem; color: #FFC107;"></i> ${b.destination}</span>
+                                <div style="display: flex; gap: 15px; color: #666; font-size: 0.85rem; margin-bottom: 10px;">
+                                    <span><i class="far fa-calendar-alt"></i> ${b.date}</span>
+                                    <span><i class="far fa-clock"></i> ${b.time}</span>
+                                    <span style="color: #FFC107; font-weight: 800; text-transform: uppercase;">${b.vehicle}</span>
+                                </div>
+                                ${b.driver ? `
+                                <div style="margin-top: 15px; background: #e8f5e9; padding: 10px 15px; border-radius: 4px; display: inline-block;">
+                                    <div style="color: #2e7d32; font-weight: 900; font-size: 0.75rem; letter-spacing: 1px;">ASSIGNED PERSONNEL</div>
+                                    <div style="color: #1b5e20; font-weight: 600; font-size: 0.9rem;">${b.driver} • ${b.carPlate}</div>
+                                </div>
+                                ` : '<div style="margin-top: 15px; color: #d32f2f; font-weight: 800; font-size: 0.75rem;"><i class="fas fa-exclamation-triangle"></i> PENDING ASSIGNMENT</div>'}
+                            </div>
+                        </div>
+                        <div style="margin-top: 25px; padding-top: 20px; border-top: 1px solid #eee; display: flex; gap: 10px;">
+                            <input type="text" id="driver-${index}" placeholder="Operator Name" style="flex: 1.5; padding: 12px; border: 1px solid #ddd; font-family: 'Outfit'; font-size: 0.85rem;" value="${b.driver || ''}">
+                            <input type="text" id="plate-${index}" placeholder="Vehicle Reg" style="flex: 1; padding: 12px; border: 1px solid #ddd; font-family: 'Outfit'; font-size: 0.85rem;" value="${b.carPlate || ''}">
+                            <button onclick="assignDriver(${index})" style="background: #000; color: #FFC107; border: none; padding: 12px 20px; cursor: pointer; font-weight: 900; font-size: 0.7rem; letter-spacing: 1.5px; text-transform: uppercase;">UPDATE MISSION</button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function assignDriver(index) {
+            const bookings = JSON.parse(localStorage.getItem('luxury_honey_bookings') || '[]');
+            const driver = document.getElementById(`driver-${index}`).value;
+            const plate = document.getElementById(`plate-${index}`).value;
+
+            if (!driver || !plate) {
+                alert("CRITICAL ERROR: Please specify both Operator and Vehicle Reg.");
+                return;
+            }
+
+            bookings[index].driver = driver;
+            bookings[index].carPlate = plate;
+            localStorage.setItem('luxury_honey_bookings', JSON.stringify(bookings));
+
+            alert(`DATA SYNCED: Assignment for ${bookings[index].id} is successful.`);
+            renderBookings();
+        }
+
+        // Booking System
+        document.getElementById('bookingForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const dateTime = document.getElementById('travelTime').value;
+            const [date, time] = dateTime.split('T');
+
+            const booking = {
+                id: 'ELITE-' + Math.random().toString(36).substr(2, 4).toUpperCase() + '-' + Math.random().toString(36).substr(2, 4).toUpperCase(),
+                pincode: document.getElementById('pincode').value,
+                destination: document.getElementById('destination').value,
+                date: date,
+                time: time,
+                vehicle: document.getElementById('vehicleType').value,
+                status: 'SECURED'
+            };
+
+            const bookings = JSON.parse(localStorage.getItem('luxury_honey_bookings') || '[]');
+            bookings.push(booking);
+            localStorage.setItem('luxury_honey_bookings', JSON.stringify(bookings));
+
+            alert(`Elite Reservation Secured: ${booking.id}\nHoney Airport Transfers Ltd thanks you for your trust.`);
+
+            // WhatsApp Elite Dispatch - UPDATED NUMBER
+            const message = `*HONEY AIRPORT TRANSFERS LTD*\n*ELITE PRIORITY ALERT*\n\nReservation ID: ${booking.id}\nPickup Pincode: ${booking.pincode}\nDestination: ${booking.destination}\nSchedule: ${date} @ ${time}\nVehicle Category: ${booking.vehicle}\n\n_Please confirm vehicle assignment immediately._`;
+            const waUrl = `https://wa.me/447443880040?text=${encodeURIComponent(message)}`;
+
+            if (confirm("Would you like to notify our 24/7 Priority Dispatch team on WhatsApp?")) {
+                window.open(waUrl, '_blank');
             }
         });
     </script>
