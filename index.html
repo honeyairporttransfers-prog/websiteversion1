@@ -26,8 +26,9 @@
         <ul class="nav-links" id="navLinks">
             <li><a href="#home">Home</a></li>
             <li><a href="#fleet">Our Elite Fleet</a></li>
-            <li><a href="#about">The Elite Standard</a></li>
-            <li><a href="#" onclick="openModal('portal-modal')">Management</a></li>
+            <li><a href="#about">Honey Airport Transfer</a></li>
+            <li><a href="#" onclick="openModal('portal-modal')" title="Management"><i class="fas fa-user-cog"></i></a>
+            </li>
         </ul>
         <div class="cta-container">
             <a href="https://wa.me/447443880040" class="btn-whatsapp">
@@ -49,7 +50,7 @@
                         <div class="input-row">
                             <div class="luxe-input-wrapper">
                                 <i class="fas fa-location-arrow"></i>
-                                <input type="text" id="pincode" placeholder="From: Enter Location or Postcode..."
+                                <input type="text" id="pincode" placeholder="From: Enter Location or Postcode * "
                                     required>
                             </div>
                             <div class="luxe-input-wrapper">
@@ -168,11 +169,11 @@
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px;">
                             <div class="luxe-input-wrapper" style="height: 45px;">
                                 <i class="fas fa-user-circle"></i>
-                                <input type="text" id="passengerName" placeholder="Full Name" required>
+                                <input type="text" id="passengerName" placeholder="Full Name *" required>
                             </div>
                             <div class="luxe-input-wrapper" style="height: 45px;">
                                 <i class="fas fa-phone"></i>
-                                <input type="tel" id="passengerPhone" placeholder="Phone Number" required>
+                                <input type="tel" id="passengerPhone" placeholder="Phone Number *" required>
                             </div>
                         </div>
 
@@ -189,7 +190,7 @@
                             </select>
                         </div>
 
-                        <button type="submit" class="btn-luxe-book">Secure Elite Booking</button>
+                        <button type="submit" class="btn-luxe-book">Secure Transfer Booking</button>
                     </form>
                 </div>
             </div>
@@ -350,7 +351,7 @@
     <!-- The Elite Standard Section -->
     <section class="elite-standard" id="about">
         <div class="section-title">
-            <h2>The Elite Standard</h2>
+            <h2>Honey Airport Transfer</h2>
             <div></div>
         </div>
 
@@ -387,7 +388,7 @@
                 onclick="closeModal('portal-modal')">&times;</span>
             <h2 style="font-size: 1.8rem; font-weight: 900; margin-bottom: 20px;">ACCESS MANAGEMENT</h2>
             <div id="portal-login">
-                <p style="color: #666; margin-bottom: 30px;">Enter your credentials to manage elite reservations.</p>
+                <p style="color: #666; margin-bottom: 30px;">Enter your credentials to manage transfers.</p>
                 <div class="form-group" style="margin-bottom: 20px;">
                     <label>AUTHENTICATED EMAIL</label>
                     <div class="input-wrapper">

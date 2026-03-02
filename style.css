@@ -115,8 +115,19 @@ header.scrolled .company-name-header {
     transition: var(--transition);
 }
 
-.nav-links a:hover::after {
-    width: 100%;
+.nav-links a i {
+    font-size: 1.1rem;
+    color: var(--accent);
+}
+
+.input-row input::placeholder {
+    color: #888;
+}
+
+.input-row input:required+i::after,
+input:required::placeholder {
+    color: #ff4d4d;
+    /* Red star indicator */
 }
 
 .cta-container {
