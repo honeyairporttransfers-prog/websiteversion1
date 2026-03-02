@@ -347,15 +347,114 @@ input:required::placeholder {
     justify-content: center;
 }
 
+/* Compact Booking Section Below Hero */
+.booking-section {
+    position: relative;
+    margin-top: -80px;
+    z-index: 100;
+    padding: 0 5%;
+    display: flex;
+    justify-content: center;
+}
+
 .booking-card {
-    background: rgba(40, 40, 40, 0.95);
-    backdrop-filter: blur(10px);
-    padding: 30px;
-    border-radius: 20px;
-    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: white;
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
     width: 100%;
+    max-width: 1200px;
+    border: 1px solid var(--grey-border);
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr;
+    gap: 20px;
+}
+
+.form-col {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.datetime-well-compact {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.datetime-well-compact input,
+.datetime-well-compact select {
+    height: 45px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 0 15px;
+    font-family: var(--font-elite);
+    font-weight: 600;
+}
+
+.time-selects {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.form-footer-action {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.counters-compact {
+    display: flex;
+    gap: 30px;
+}
+
+.counter-mini {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.counter-btns {
+    display: flex;
+    gap: 5px;
+}
+
+.counter-btns button {
+    width: 28px;
+    height: 28px;
+    border: 1px solid #ddd;
+    background: #f9f9f9;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 800;
+}
+
+.btn-luxe-book-compact {
+    background: var(--dark);
+    color: var(--accent);
+    border: none;
+    padding: 15px 40px;
+    border-radius: 50px;
+    font-weight: 900;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.btn-luxe-book-compact:hover {
+    background: var(--accent);
+    color: var(--dark);
+    transform: translateY(-2px);
 }
 
 .booking-form {
