@@ -60,16 +60,16 @@ header.scrolled {
 }
 
 .logo-container img {
-    height: 180px;
-    /* Optimized for Laptop Premium Feel */
+    height: 120px;
+    /* Refined Premium Height */
     width: auto;
     object-fit: contain;
     transition: var(--transition);
 }
 
 header.scrolled .logo-container img {
-    height: 100px;
-    /* Compact & Clear for Scrolled Laptop */
+    height: 70px;
+    /* Elegant Compactness */
 }
 
 .nav-links {
@@ -846,15 +846,15 @@ footer {
 
 @media (max-width: 1024px) {
     header {
-        padding: 20px 5%;
+        padding: 10px 5%;
+    }
+
+    .nav-links {
+        gap: 20px;
     }
 
     .logo-container img {
-        height: 120px;
-    }
-
-    .booking-form {
-        grid-template-columns: 1fr 1fr;
+        height: 100px;
     }
 
     .hero h1 {
@@ -862,110 +862,111 @@ footer {
     }
 }
 
-header {
-    flex-wrap: wrap;
-    padding: 15px 5%;
-}
+@media (max-width: 768px) {
+    header {
+        flex-wrap: wrap;
+        padding: 10px 5%;
+        background: #fff;
+        justify-content: center;
+    }
 
-.mobile-toggle {
-    display: block;
-    order: 2;
-}
+    .logo-container {
+        order: 1;
+        flex: 1;
+        display: flex;
+        justify-content: center;
+    }
 
-.logo-container {
-    order: 1;
-    flex: 1;
-}
+    .logo-container img {
+        height: 60px !important;
+    }
 
-.nav-links {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: 80%;
-    height: 100vh;
-    background: white;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    transition: 0.5s ease;
-    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-    gap: 30px;
-}
+    .mobile-toggle {
+        display: block;
+        order: 2;
+        position: absolute;
+        right: 20px;
+        top: 25px;
+    }
 
-.nav-links.active {
-    right: 0;
-}
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        height: 100vh;
+        background: white;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: 0.5s ease;
+        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        gap: 30px;
+    }
 
-.cta-container {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    margin-top: 10px;
-    order: 3;
-}
+    .nav-links.active {
+        right: 0;
+    }
 
-.btn-whatsapp {
-    width: 100% !important;
-    justify-content: center;
-    padding: 14px 20px;
-    font-size: 0.95rem;
-    border-radius: 8px;
-    /* Slightly squared for mobile elite look */
-}
+    .cta-container {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        margin-top: 10px;
+        order: 3;
+        flex: none;
+    }
 
-/* Hide top CTA on mobile to save space */
+    .btn-whatsapp {
+        width: 100% !important;
+        justify-content: center;
+        padding: 12px 20px;
+        font-size: 0.9rem;
+        border-radius: 8px;
+    }
 
+    .hero {
+        height: 70vh;
+    }
 
-.hero {
-    height: 80vh;
-}
+    .hero h1 {
+        font-size: 2.2rem;
+    }
 
-.hero h1 {
-    font-size: 2.5rem;
-}
+    .booking-section {
+        margin-top: -30px;
+        padding: 0 5%;
+    }
 
-.booking-section {
-    margin-top: -50px;
-    padding: 0 5%;
-}
+    .booking-card {
+        padding: 20px;
+    }
 
-.booking-card {
-    padding: 30px 20px;
-}
+    .booking-form {
+        grid-template-columns: 1fr;
+    }
 
-.booking-form {
-    grid-template-columns: 1fr;
-}
+    .section-title h2 {
+        font-size: 2rem;
+    }
 
-.section-title h2 {
-    font-size: 2.5rem;
-}
+    .feature-large {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
 
-.feature-large {
-    grid-template-columns: 1fr;
-    gap: 40px;
-}
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
 
-.feature-text h3 {
-    font-size: 1.8rem;
-}
-
-.footer-grid {
-    grid-template-columns: 1fr;
-    gap: 40px;
-}
-
-.fab-emergency {
-    bottom: 20px;
-    right: 20px;
-    left: 20px;
-    padding: 15px;
-    justify-content: center;
-    font-size: 0.8rem;
-}
-
-.logo-container img {
-    height: 80px;
-}
+    .fab-emergency {
+        bottom: 20px;
+        right: 15px;
+        left: 15px;
+        padding: 12px;
+        justify-content: center;
+        font-size: 0.75rem;
+    }
 }
