@@ -20,7 +20,10 @@
         <div class="logo-container">
             <img src="assets/logo-xl.png" alt="Honey Airport Transfers Ltd Logo">
         </div>
-        <ul class="nav-links">
+        <div class="mobile-toggle" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+        <ul class="nav-links" id="navLinks">
             <li><a href="#home">Home</a></li>
             <li><a href="#fleet">Our Elite Fleet</a></li>
             <li><a href="#about">The Elite Standard</a></li>
@@ -47,24 +50,18 @@
     <!-- Interactive Elite Booking -->
     <section class="booking-section">
         <div class="booking-card">
-            <div class="booking-tabs">
-                <div class="tab-btn active">One Way Transfer</div>
-                <div class="tab-btn">Return Transfer</div>
-                <div class="tab-btn">Hourly Chauffeur</div>
-            </div>
             <form class="booking-form" id="bookingForm">
-                <div class="form-group">
-                    <label>Pickup UK Pincode</label>
-                    <div class="input-wrapper">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <input type="text" id="pincode" placeholder="e.g. OX1 1AB" required>
+                <!-- Location Row -->
+                <div class="input-row">
+                    <div class="luxe-input-wrapper">
+                        <i class="fas fa-location-arrow"></i>
+                        <input type="text" id="pincode" placeholder="From: Enter Location or Postcode such as..."
+                            required>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label>Select Destination</label>
-                    <div class="input-wrapper">
-                        <i class="fas fa-plane"></i>
+                    <div class="luxe-input-wrapper">
+                        <i class="fas fa-map-marker-alt"></i>
                         <select id="destination" required>
+                            <option value="" disabled selected>To: Postcode / Street Name / Airport Name</option>
                             <option value="Heathrow Terminal 5">Heathrow T5 (LHR)</option>
                             <option value="Heathrow Terminal 2/3">Heathrow T2 / T3 (LHR)</option>
                             <option value="Heathrow Terminal 4">Heathrow T4 (LHR)</option>
@@ -73,27 +70,231 @@
                         </select>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label>Schedule Pickup</label>
-                    <div class="input-wrapper">
-                        <i class="fas fa-calendar-day"></i>
-                        <input type="datetime-local" id="travelTime" required>
+
+                <!-- Trip Selection -->
+                <div class="trip-selection">
+                    <label class="trip-type">
+                        <input type="radio" name="tripType" value="One Way" checked>
+                        <span>One Way</span>
+                    </label>
+                    <label class="trip-type">
+                        <input type="radio" name="tripType" value="Round Trip">
+                        <span>Round Trip</span>
+                    </label>
+                </div>
+
+                <!-- Counter Grid -->
+                <div class="counter-grid">
+                    <div class="counter-group">
+                        <label>Passengers</label>
+                        <div class="counter-ctrl">
+                            <button type="button" class="btn-counter"
+                                onclick="updateCounter('passengerCount', -1)">-</button>
+                            <div class="counter-value" id="passengerDisplay">1</div>
+                            <button type="button" class="btn-counter"
+                                onclick="updateCounter('passengerCount', 1)">+</button>
+                            <input type="hidden" id="passengerCount" value="1">
+                        </div>
+                    </div>
+                    <div class="counter-group">
+                        <label>Luggages</label>
+                        <div class="counter-ctrl">
+                            <button type="button" class="btn-counter"
+                                onclick="updateCounter('luggageCount', -1)">-</button>
+                            <div class="counter-value" id="luggageDisplay">1</div>
+                            <button type="button" class="btn-counter"
+                                onclick="updateCounter('luggageCount', 1)">+</button>
+                            <input type="hidden" id="luggageCount" value="1">
+                        </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label>Elite Vehicle Class</label>
-                    <div class="input-wrapper">
-                        <i class="fas fa-car"></i>
-                        <select id="vehicleType" required>
-                            <option value="Economy Saloon (VW Passat / Toyota Prius)">Elite Economy</option>
-                            <option value="Business Class (Mercedes E-Class)">Business Executive</option>
-                            <option value="First Class (Mercedes S-Class)">The Elite - First Class</option>
-                            <option value="Executive XL (Mercedes V-Class)">Chauffeur XL (VIP)</option>
-                        </select>
+
+                <!-- DateTime Well -->
+                <div class="datetime-well">
+                    <div class="well-group">
+                        <label>Date:</label>
+                        <div class="well-input">
+                            <input type="date" id="travelDate" required>
+                        </div>
+                    </div>
+                    <div class="well-group" style="flex: 0.5;">
+                        <label>Hour:</label>
+                        <div class="well-input">
+                            <select id="travelHour" required>
+                                ${Array.from({length: 24}, (_, i) => `<option value="${i.toString().padStart(2, '0')}">
+                                    ${i.toString().padStart(2, '0')}</option>`).join('')}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="well-group" style="flex: 0.5;">
+                        <label>Minute:</label>
+                        <div class="well-input">
+                            <select id="travelMinute" required>
+                                <option value="00">00</option>
+                                <option value="15">15</option>
+                                <option value="30">30</option>
+                                <option value="45">45</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
-                <button type="submit" class="btn-master">Secure Premium Reservation</button>
+
+                <!-- Contact & Vehicle Row -->
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px;">
+                    <div class="luxe-input-wrapper" style="height: 50px;">
+                        <i class="fas fa-user-circle"></i>
+                        <input type="text" id="passengerName" placeholder="Passenger Full Name" required>
+                    </div>
+                    <div class="luxe-input-wrapper" style="height: 50px;">
+                        <i class="fas fa-phone"></i>
+                        <input type="tel" id="passengerPhone" placeholder="Contact Phone Number" required>
+                    </div>
+                </div>
+
+                <div class="luxe-input-wrapper" style="height: 50px; margin-top: 20px;">
+                    <i class="fas fa-car-side"></i>
+                    <select id="vehicleType" required style="background: transparent;">
+                        <option value="Economy Saloon">Elite Economy</option>
+                        <option value="Business Class">Business Executive</option>
+                        <option value="First Class">The Elite - First Class</option>
+                        <option value="Executive XL">Chauffeur XL (VIP)</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn-luxe-book">Get Quote / Book</button>
             </form>
+        </div>
+    </section>
+
+    <!-- Choose Your Class Section -->
+    <section class="fleet-section" id="fleet">
+        <div class="section-title">
+            <h2>Choose Your Class</h2>
+            <div></div>
+        </div>
+
+        <div class="fleet-intro">
+            <p>Whether you are booking an airport transfer, inter-city ride, or require a chauffeur by the hour, you can
+                rely on us to provide an unrivalled service from our trusted partners around the world. <b>We have been
+                    operating for over 30 years</b>, setting the gold standard in premium transportation.</p>
+        </div>
+
+        <div class="fleet-grid">
+            <!-- Economy Saloon -->
+            <div class="fleet-card">
+                <div class="best-value-badge"></div>
+                <div class="fleet-img">
+                    <img src="assets/car-economy.png" alt="Economy Saloon">
+                </div>
+                <div class="fleet-info">
+                    <h4>Economy Saloon</h4>
+                    <p class="fleet-models">Tesla Model 3, Polestar 2/3, Toyota Camry or similar</p>
+                    <ul class="fleet-specs">
+                        <li><i class="fas fa-users"></i> Up to 3 passengers</li>
+                        <li><i class="fas fa-suitcase"></i> Up to 2 medium suitcases</li>
+                        <li><i class="fas fa-briefcase"></i> Up to 2 carry-on bags</li>
+                        <li><i class="fas fa-check-circle"></i> Free Cancellation*</li>
+                        <li><i class="fas fa-user-tie"></i> Professional Driver</li>
+                    </ul>
+                    <button class="btn-fleet-book" onclick="selectFleetClass('Economy Saloon')">Book Now</button>
+                </div>
+            </div>
+
+            <!-- Business Class Saloon -->
+            <div class="fleet-card">
+                <div class="fleet-img">
+                    <img src="assets/car-business.png" alt="Business Class Saloon">
+                </div>
+                <div class="fleet-info">
+                    <h4>Business Class Saloon</h4>
+                    <p class="fleet-models">Mercedes E Class, BMW 5 Series or similar</p>
+                    <ul class="fleet-specs">
+                        <li><i class="fas fa-users"></i> Up to 3 passengers</li>
+                        <li><i class="fas fa-suitcase"></i> Up to 2 medium suitcases</li>
+                        <li><i class="fas fa-briefcase"></i> Up to 2 carry-on bags</li>
+                        <li><i class="fas fa-check-circle"></i> Free Cancellation*</li>
+                        <li><i class="fas fa-wifi"></i> Complimentary WiFi & Water</li>
+                    </ul>
+                    <button class="btn-fleet-book" onclick="selectFleetClass('Business Class')">Book Now</button>
+                </div>
+            </div>
+
+            <!-- First Class Saloon -->
+            <div class="fleet-card">
+                <div class="fleet-img">
+                    <img src="assets/car-first.png" alt="First Class Saloon">
+                </div>
+                <div class="fleet-info">
+                    <h4>First Class Saloon</h4>
+                    <p class="fleet-models">Mercedes S Class, BMW 7 Series or similar</p>
+                    <ul class="fleet-specs">
+                        <li><i class="fas fa-users"></i> Up to 3 passengers</li>
+                        <li><i class="fas fa-suitcase"></i> Up to 2 medium suitcases</li>
+                        <li><i class="fas fa-briefcase"></i> Up to 2 carry-on bags</li>
+                        <li><i class="fas fa-check-circle"></i> Free Cancellation*</li>
+                        <li><i class="fas fa-crown"></i> VIP Lounge Seating</li>
+                    </ul>
+                    <button class="btn-fleet-book" onclick="selectFleetClass('First Class')">Book Now</button>
+                </div>
+            </div>
+
+            <!-- Economy XL -->
+            <div class="fleet-card">
+                <div class="best-value-badge"></div>
+                <div class="fleet-img">
+                    <img src="assets/car-xl.png" alt="Economy XL">
+                </div>
+                <div class="fleet-info">
+                    <h4>Economy XL</h4>
+                    <p class="fleet-models">Mercedes Vito, VW Transporter or similar</p>
+                    <ul class="fleet-specs">
+                        <li><i class="fas fa-users"></i> Up to 5 passengers</li>
+                        <li><i class="fas fa-suitcase"></i> Up to 5 medium suitcases</li>
+                        <li><i class="fas fa-briefcase"></i> Up to 5 carry-on bags</li>
+                        <li><i class="fas fa-check-circle"></i> Free Cancellation*</li>
+                        <li><i class="fas fa-shuttle-van"></i> Group Travel Economy</li>
+                    </ul>
+                    <button class="btn-fleet-book" onclick="selectFleetClass('Executive XL')">Book Now</button>
+                </div>
+            </div>
+
+            <!-- Business Class XL -->
+            <div class="fleet-card">
+                <div class="fleet-img">
+                    <img src="assets/car-vclass.png" alt="Business Class XL">
+                </div>
+                <div class="fleet-info">
+                    <h4>Business Class XL</h4>
+                    <p class="fleet-models">Mercedes V Class, VW Caravelle or similar</p>
+                    <ul class="fleet-specs">
+                        <li><i class="fas fa-users"></i> Up to 7 passengers</li>
+                        <li><i class="fas fa-suitcase"></i> Up to 7 medium suitcases</li>
+                        <li><i class="fas fa-briefcase"></i> Up to 7 carry-on bags</li>
+                        <li><i class="fas fa-check-circle"></i> Free Cancellation*</li>
+                        <li><i class="fas fa-glass-cheers"></i> Premium Group Travel</li>
+                    </ul>
+                    <button class="btn-fleet-book" onclick="selectFleetClass('Executive XL')">Book Now</button>
+                </div>
+            </div>
+
+            <!-- First Class XL -->
+            <div class="fleet-card">
+                <div class="fleet-img">
+                    <img src="assets/car-jet.png" alt="First Class XL">
+                </div>
+                <div class="fleet-info">
+                    <h4>First Class XL</h4>
+                    <p class="fleet-models">Mercedes V Class Custom, Jet Class or similar</p>
+                    <ul class="fleet-specs">
+                        <li><i class="fas fa-users"></i> Up to 4 passengers</li>
+                        <li><i class="fas fa-suitcase"></i> Up to 2 medium suitcases</li>
+                        <li><i class="fas fa-briefcase"></i> Up to 4 carry-on bags</li>
+                        <li><i class="fas fa-check-circle"></i> Free Cancellation*</li>
+                        <li><i class="fas fa-star"></i> Private Jet Standard</li>
+                    </ul>
+                    <button class="btn-fleet-book" onclick="selectFleetClass('Executive XL')">Book Now</button>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -126,8 +327,8 @@
     </section>
 
     <!-- Emergency Dispatch FAB -->
-    <a href="tel:+441865999999" class="fab-emergency">
-        <i class="fas fa-phone-alt"></i> 24/7 EMERGENCY DISPATCH
+    <a href="tel:+447443880040" class="fab-emergency">
+        <i class="fas fa-phone-alt"></i> 24/7 EMERGENCY: +44 7443 880040
     </a>
 
     <!-- Management Portal Modal -->
@@ -179,8 +380,10 @@
             </div>
             <div>
                 <h5 style="margin-bottom: 25px; letter-spacing: 2px;">CONTACT</h5>
-                <p style="color: #888; font-size: 0.8rem;">24/7 Hotline: +44 1865 999 999</p>
-                <p style="color: #888; font-size: 0.8rem;">Email: dispatch@honeyairporttransfersltd.com</p>
+                <p style="color: #888; font-size: 0.8rem;">24/7 Hotline: 01923 989 050</p>
+                <p style="color: #888; font-size: 0.8rem;">Emergency: +44 7443 880040</p>
+                <p style="color: #888; font-size: 0.8rem;">WhatsApp: 07443880040</p>
+                <p style="color: #888; font-size: 0.8rem;">Email: info@honeyairporttransfersltd.com</p>
             </div>
             <div>
                 <h5 style="margin-bottom: 25px; letter-spacing: 2px;">LEGAL</h5>
@@ -198,7 +401,12 @@
     </footer>
 
     <script>
-        // Directly embedded booking logic for local compatibility
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            const nav = document.getElementById('navLinks');
+            nav.classList.toggle('active');
+        }
+
         window.addEventListener('scroll', () => {
             const header = document.getElementById('mainHeader');
             if (window.scrollY > 100) {
@@ -211,7 +419,16 @@
         function selectVehicle(type, element) {
             document.getElementById('vehicleType').value = type;
             document.querySelectorAll('.vehicle-card').forEach(card => card.classList.remove('selected'));
-            element.classList.add('selected');
+            if (element) element.classList.add('selected');
+        }
+
+        function selectFleetClass(type) {
+            document.getElementById('vehicleType').value = type;
+            window.scrollTo({ top: document.querySelector('.booking-section').offsetTop - 100, behavior: 'smooth' });
+            // Add a subtle flash effect to the dropdown
+            const dropdown = document.getElementById('vehicleType');
+            dropdown.style.backgroundColor = '#00CDE1';
+            setTimeout(() => dropdown.style.backgroundColor = 'white', 500);
         }
 
         function openModal(id) {
@@ -222,8 +439,25 @@
             document.getElementById(id).style.display = 'none';
         }
 
+        // Counter Logic
+        function updateCounter(id, change) {
+            const input = document.getElementById(id);
+            const display = document.getElementById(id.replace('Count', 'Display'));
+            let val = parseInt(input.value) + change;
+            if (val < 1) val = 1;
+            if (val > 20) val = 20;
+            input.value = val;
+            display.innerText = val;
+        }
+
         // Management Login System
         function login() {
+            // Mobile Restriction Check
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                alert("SECURITY NOTICE: The Management Portal is only accessible via Desktop Web Browsers for security and analytics precision.");
+                return;
+            }
+
             const email = document.getElementById('loginEmail').value;
             const pass = document.getElementById('loginPass').value;
 
@@ -241,7 +475,46 @@
 
         function renderBookings() {
             const bookingList = document.getElementById('bookingList');
+            const analyticsDashboard = document.getElementById('analyticsDashboard');
             const bookings = JSON.parse(localStorage.getItem('luxury_honey_bookings') || '[]');
+
+            // Calculate Analytics
+            const totalMissions = bookings.length;
+            const assignedMissions = bookings.filter(b => b.driver && b.carPlate).length;
+            const pendingMissions = totalMissions - assignedMissions;
+
+            // Find most popular vehicle
+            const vehicleCounts = bookings.reduce((acc, b) => {
+                acc[b.vehicle] = (acc[b.vehicle] || 0) + 1;
+                return acc;
+            }, {});
+            const topVehicle = Object.keys(vehicleCounts).reduce((a, b) => vehicleCounts[a] > vehicleCounts[b] ? a : b, 'NONE');
+
+            // Render Analytics
+            if (analyticsDashboard) {
+                analyticsDashboard.innerHTML = `
+                    <div class="stat-card">
+                        <h4>Total Missions</h4>
+                        <div class="stat-value">${totalMissions}</div>
+                        <div class="stat-label">ALL TIME</div>
+                    </div>
+                    <div class="stat-card">
+                        <h4>Pending</h4>
+                        <div class="stat-value" style="color: #d32f2f;">${pendingMissions}</div>
+                        <div class="stat-label">REQUIRES ACTION</div>
+                    </div>
+                    <div class="stat-card">
+                        <h4>Assigned</h4>
+                        <div class="stat-value" style="color: #2e7d32;">${assignedMissions}</div>
+                        <div class="stat-label">LIVE OPS</div>
+                    </div>
+                    <div class="stat-card">
+                        <h4>Top Class</h4>
+                        <div class="stat-value" style="font-size: 0.9rem;">${topVehicle.split(' (')[0]}</div>
+                        <div class="stat-label">POPULAR</div>
+                    </div>
+                `;
+            }
 
             if (bookings.length === 0) {
                 bookingList.innerHTML = "<p style='text-align: center; color: #999; padding: 40px;'>No elite reservations found.</p>";
@@ -249,13 +522,19 @@
                 bookingList.innerHTML = bookings.map((b, index) => `
                     <div style="background: #fafafa; border-left: 4px solid #FFC107; padding: 25px; margin-bottom: 20px; position: relative; border-radius: 4px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
                         <div style="display: flex; justify-content: space-between; align-items: start;">
-                            <div>
-                                <strong style="color: #000; letter-spacing: 1px; font-size: 0.8rem;">MISSION REF: ${b.id}</strong><br>
+                            <div style="width: 100%;">
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                                    <strong style="color: #000; letter-spacing: 1px; font-size: 0.8rem;">MISSION REF: ${b.id}</strong>
+                                    <span style="background: #000; color: #FFC107; padding: 4px 10px; font-size: 0.75rem; font-weight: 900; border-radius: 4px; letter-spacing: 1px;">${b.vehicle.split(' (')[0]}</span>
+                                </div>
+                                <div style="margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 15px;">
+                                    <div style="font-weight: 900; color: #000; font-size: 1.2rem; margin-bottom: 5px;">${b.passengerName || 'N/A'}</div>
+                                    <div style="color: var(--accent); font-weight: 700; font-size: 1rem;"><i class="fas fa-phone-alt"></i> ${b.passengerPhone || 'N/A'}</div>
+                                </div>
                                 <span style="font-size: 1.2rem; font-weight: 900; color: #000; display: block; margin: 10px 0;">${b.pincode} <i class="fas fa-arrow-right" style="font-size: 0.8rem; color: #FFC107;"></i> ${b.destination}</span>
                                 <div style="display: flex; gap: 15px; color: #666; font-size: 0.85rem; margin-bottom: 10px;">
                                     <span><i class="far fa-calendar-alt"></i> ${b.date}</span>
                                     <span><i class="far fa-clock"></i> ${b.time}</span>
-                                    <span style="color: #FFC107; font-weight: 800; text-transform: uppercase;">${b.vehicle}</span>
                                 </div>
                                 ${b.driver ? `
                                 <div style="margin-top: 15px; background: #e8f5e9; padding: 10px 15px; border-radius: 4px; display: inline-block;">
@@ -297,13 +576,24 @@
         document.getElementById('bookingForm').addEventListener('submit', (e) => {
             e.preventDefault();
 
-            const dateTime = document.getElementById('travelTime').value;
-            const [date, time] = dateTime.split('T');
+            const date = document.getElementById('travelDate').value;
+            const hour = document.getElementById('travelHour').value;
+            const minute = document.getElementById('travelMinute').value;
+            const time = `${hour}:${minute}`;
+
+            const tripType = document.querySelector('input[name="tripType"]:checked').value;
+            const passengers = document.getElementById('passengerCount').value;
+            const luggage = document.getElementById('luggageCount').value;
 
             const booking = {
                 id: 'ELITE-' + Math.random().toString(36).substr(2, 4).toUpperCase() + '-' + Math.random().toString(36).substr(2, 4).toUpperCase(),
+                passengerName: document.getElementById('passengerName').value,
+                passengerPhone: document.getElementById('passengerPhone').value,
                 pincode: document.getElementById('pincode').value,
                 destination: document.getElementById('destination').value,
+                tripType: tripType,
+                passengers: passengers,
+                luggage: luggage,
                 date: date,
                 time: time,
                 vehicle: document.getElementById('vehicleType').value,
@@ -314,10 +604,10 @@
             bookings.push(booking);
             localStorage.setItem('luxury_honey_bookings', JSON.stringify(bookings));
 
-            alert(`Elite Reservation Secured: ${booking.id}\nHoney Airport Transfers Ltd thanks you for your trust.`);
+            alert(`Elite Reservation Secured!\n\nReference: ${booking.id}\nTrip: ${tripType}\nSchedule: ${date} at ${time}\n\nHoney Airport Transfers Ltd thanks you for your trust.`);
 
             // WhatsApp Elite Dispatch - UPDATED NUMBER
-            const message = `*HONEY AIRPORT TRANSFERS LTD*\n*ELITE PRIORITY ALERT*\n\nReservation ID: ${booking.id}\nPickup Pincode: ${booking.pincode}\nDestination: ${booking.destination}\nSchedule: ${date} @ ${time}\nVehicle Category: ${booking.vehicle}\n\n_Please confirm vehicle assignment immediately._`;
+            const message = `*HONEY AIRPORT TRANSFERS LTD*\n*ELITE PRIORITY ALERT*\n\nReservation ID: ${booking.id}\nTrip Type: ${tripType}\nPassenger: ${booking.passengerName}\nContact: ${booking.passengerPhone}\nPickup: ${booking.pincode}\nTo: ${booking.destination}\nSchedule: ${date} @ ${time}\nDetails: ${passengers} Pax / ${luggage} Bags\nVehicle: ${booking.vehicle}\n\n_Please confirm vehicle assignment immediately._`;
             const waUrl = `https://wa.me/447443880040?text=${encodeURIComponent(message)}`;
 
             if (confirm("Would you like to notify our 24/7 Priority Dispatch team on WhatsApp?")) {

@@ -37,7 +37,8 @@ header {
     left: 0;
     width: 100%;
     z-index: 1000;
-    padding: 30px 8%;
+    padding: 40px 5%;
+    /* Adjusted padding for larger logo */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -46,24 +47,27 @@ header {
 
 header.scrolled {
     background: rgba(255, 255, 255, 0.98);
-    padding: 15px 8%;
+    padding: 20px 5%;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
     backdrop-filter: blur(10px);
 }
 
 .logo-container {
-    flex: 1;
+    flex: 1.5;
+    /* Give more space to logo */
 }
 
 .logo-container img {
-    height: 180px;
-    /* Doubled from 90px for high-impact branding */
+    height: 280px;
+    /* Massively increased for elite branding and readability */
+    width: auto;
+    object-fit: contain;
     transition: var(--transition);
 }
 
 header.scrolled .logo-container img {
-    height: 100px;
-    /* Increased from 50px */
+    height: 120px;
+    /* Stay prominent even when scrolled */
 }
 
 .nav-links {
@@ -369,6 +373,153 @@ header.scrolled .logo-container img {
     margin-bottom: 25px;
 }
 
+/* --- NEW FLEET GRID: 6-TIER TRAVEL CLASSES --- */
+.fleet-section {
+    padding: 100px 8%;
+    background: #fafafa;
+}
+
+.fleet-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 40px;
+    margin-top: 60px;
+}
+
+.fleet-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.05);
+    transition: var(--transition);
+    position: relative;
+    border: 1px solid #eee;
+    display: flex;
+    flex-direction: column;
+}
+
+.fleet-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
+}
+
+.fleet-img {
+    height: 220px;
+    overflow: hidden;
+    position: relative;
+    background: #fdfdfd;
+}
+
+.fleet-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 20px;
+}
+
+/* Diagonal Best Value Badge */
+.best-value-badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 120px;
+    height: 120px;
+    overflow: hidden;
+    z-index: 10;
+}
+
+.best-value-badge::before {
+    content: "BEST\aVALUE";
+    white-space: pre;
+    position: absolute;
+    top: 25px;
+    right: -35px;
+    width: 160px;
+    height: 40px;
+    background: linear-gradient(45deg, #000 50%, #2e7d32 50%);
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: rotate(45deg);
+    text-align: center;
+    line-height: 1.1;
+    letter-spacing: 1px;
+}
+
+.fleet-info {
+    padding: 30px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.fleet-info h4 {
+    font-size: 1.5rem;
+    font-weight: 900;
+    margin-bottom: 10px;
+    color: var(--dark);
+}
+
+.fleet-models {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.fleet-specs {
+    list-style: none;
+    margin-bottom: 30px;
+}
+
+.fleet-specs li {
+    font-size: 0.9rem;
+    color: #444;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.fleet-specs li i {
+    color: var(--accent);
+    width: 20px;
+}
+
+.btn-fleet-book {
+    width: 100%;
+    background: var(--dark);
+    color: var(--accent);
+    border: none;
+    padding: 15px;
+    border-radius: 8px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: var(--transition);
+    margin-top: auto;
+}
+
+.btn-fleet-book:hover {
+    background: var(--accent);
+    color: var(--dark);
+}
+
+.fleet-intro {
+    max-width: 800px;
+    margin-bottom: 60px;
+}
+
+.fleet-intro p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #666;
+}
+
 /* Emergency FAB */
 .fab-emergency {
     position: fixed;
@@ -389,27 +540,46 @@ header.scrolled .logo-container img {
     transition: var(--transition);
 }
 
-/* Modal */
-.modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    z-index: 2000;
-    justify-content: center;
-    align-items: center;
+/* Management Analytics */
+.analytics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 15px;
+    margin-bottom: 30px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid #eee;
 }
 
-.modal-content {
-    background: white;
-    padding: 50px;
-    border-radius: 12px;
-    width: 500px;
-    position: relative;
+.stat-card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    border: 1px solid #f0f0f0;
 }
+
+.stat-card h4 {
+    font-size: 0.7rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 10px;
+}
+
+.stat-card .stat-value {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--dark);
+}
+
+.stat-card .stat-label {
+    font-size: 0.75rem;
+    color: var(--accent);
+    font-weight: 700;
+}
+
+/* Modal */
 
 /* Footer */
 footer {
@@ -431,22 +601,112 @@ footer {
     }
 }
 
+/* Mobile Navigation & Toggle */
+.mobile-toggle {
+    display: none;
+    font-size: 1.8rem;
+    color: var(--dark);
+    cursor: pointer;
+    z-index: 1001;
+}
+
 @media (max-width: 1024px) {
+    header {
+        padding: 20px 5%;
+    }
+
+    .logo-container img {
+        height: 120px;
+    }
+
     .booking-form {
         grid-template-columns: 1fr 1fr;
     }
 
     .hero h1 {
-        font-size: 4rem;
+        font-size: 3.5rem;
     }
 }
 
 @media (max-width: 768px) {
-    .feature-large {
-        grid-template-columns: 1fr;
+    .mobile-toggle {
+        display: block;
     }
 
     .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        height: 100vh;
+        background: white;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: 0.5s ease;
+        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        gap: 30px;
+    }
+
+    .nav-links.active {
+        right: 0;
+    }
+
+    .cta-container {
         display: none;
+        /* Hide top CTA on mobile to save space */
+    }
+
+    .hero {
+        height: 80vh;
+    }
+
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .booking-section {
+        margin-top: -50px;
+        padding: 0 5%;
+    }
+
+    .booking-card {
+        padding: 30px 20px;
+    }
+
+    .booking-form {
+        grid-template-columns: 1fr;
+    }
+
+    .section-title h2 {
+        font-size: 2.5rem;
+    }
+
+    .feature-large {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .feature-text h3 {
+        font-size: 1.8rem;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .fab-emergency {
+        bottom: 20px;
+        right: 20px;
+        left: 20px;
+        padding: 15px;
+        justify-content: center;
+        font-size: 0.8rem;
+    }
+
+    .logo-container img {
+        height: 80px;
     }
 }
