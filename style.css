@@ -210,16 +210,18 @@ header.scrolled .company-name-header {
 
 /* Hero Section */
 .hero {
-    min-height: calc(100vh - 100px);
-    /* Adjusted to account for header while maintaining impact */
-    padding-top: 250px;
-    /* Space for the 220px massive logo + padding */
+    min-height: 100vh;
     width: 100%;
     position: relative;
-    overflow: hidden;
+    overflow: visible;
+    /* Allow content to flow naturally */
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
+    /* Start from top, not center */
+    padding-top: 250px;
+    /* Space for the 220px massive logo */
     color: white;
 }
 
@@ -251,10 +253,11 @@ header.scrolled .company-name-header {
     justify-content: space-between;
     width: 100%;
     max-width: 1300px;
-    padding: 0 5%;
+    padding: 0 5% 50px 5%;
+    /* Bottom padding for safety */
     gap: 60px;
-    margin-top: 30px;
-    /* Reduced since .hero now has padding-top */
+    margin-top: 0;
+    /* Reset margin since .hero has padding-top */
 }
 
 .hero-booking-side {
