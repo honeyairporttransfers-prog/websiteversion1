@@ -175,11 +175,14 @@
 
                 <div class="luxe-input-wrapper" style="height: 50px; margin-top: 20px;">
                     <i class="fas fa-car-side"></i>
-                    <select id="vehicleType" required style="background: transparent;">
-                        <option value="Economy Saloon">Elite Economy</option>
-                        <option value="Business Class">Business Executive</option>
-                        <option value="First Class">The Elite - First Class</option>
-                        <option value="Executive XL">Chauffeur XL (VIP)</option>
+                    <select id="vehicleType" required style="background: transparent; font-weight: 600;">
+                        <option value="" disabled selected>Choose Your Travel Class</option>
+                        <option value="Economy Saloon">Economy Saloon</option>
+                        <option value="Business Class Saloon">Business Class Saloon</option>
+                        <option value="First Class Saloon">First Class Saloon</option>
+                        <option value="Economy XL">Economy XL (Up to 5 Pax)</option>
+                        <option value="Business Class XL">Business Class XL (Up to 7 Pax)</option>
+                        <option value="First Class XL">First Class XL (Jet Class)</option>
                     </select>
                 </div>
 
@@ -239,7 +242,7 @@
                         <li><i class="fas fa-wifi"></i> Complimentary WiFi & Water</li>
                         <li><i class="fas fa-user-tie"></i> Executive Chauffeur</li>
                     </ul>
-                    <button class="btn-fleet-book" onclick="selectFleetClass('Business Class')">Book Now</button>
+                    <button class="btn-fleet-book" onclick="selectFleetClass('Business Class Saloon')">Book Now</button>
                 </div>
             </div>
 
@@ -259,7 +262,7 @@
                         <li><i class="fas fa-crown"></i> VIP Lounge Seating</li>
                         <li><i class="fas fa-star"></i> The Absolute Gold Standard</li>
                     </ul>
-                    <button class="btn-fleet-book" onclick="selectFleetClass('First Class')">Book Now</button>
+                    <button class="btn-fleet-book" onclick="selectFleetClass('First Class Saloon')">Book Now</button>
                 </div>
             </div>
 
@@ -452,11 +455,16 @@
 
         function selectFleetClass(type) {
             document.getElementById('vehicleType').value = type;
-            window.scrollTo({ top: document.querySelector('.booking-section').offsetTop - 100, behavior: 'smooth' });
-            // Add a subtle flash effect to the dropdown
+            window.scrollTo({ top: document.querySelector('.booking-section').offsetTop - 120, behavior: 'smooth' });
+
+            // Add a subtle Gold flash effect to the selection input
             const dropdown = document.getElementById('vehicleType');
-            dropdown.style.backgroundColor = '#00CDE1';
-            setTimeout(() => dropdown.style.backgroundColor = 'white', 500);
+            const wrapper = dropdown.parentElement;
+            wrapper.style.backgroundColor = '#D4AF37';
+            wrapper.style.transition = 'background-color 0.2s';
+            setTimeout(() => {
+                wrapper.style.backgroundColor = 'white';
+            }, 600);
         }
 
         function openModal(id) {
