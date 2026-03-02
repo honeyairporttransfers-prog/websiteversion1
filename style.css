@@ -210,7 +210,10 @@ header.scrolled .company-name-header {
 
 /* Hero Section */
 .hero {
-    height: 100vh;
+    min-height: calc(100vh - 100px);
+    /* Adjusted to account for header while maintaining impact */
+    padding-top: 250px;
+    /* Space for the 220px massive logo + padding */
     width: 100%;
     position: relative;
     overflow: hidden;
@@ -250,8 +253,8 @@ header.scrolled .company-name-header {
     max-width: 1300px;
     padding: 0 5%;
     gap: 60px;
-    margin-top: 180px;
-    /* Increased to prevent overlap with 220px logo */
+    margin-top: 30px;
+    /* Reduced since .hero now has padding-top */
 }
 
 .hero-booking-side {
