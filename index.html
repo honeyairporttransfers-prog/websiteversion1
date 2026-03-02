@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Honey Airport Transfers Ltd | The Elite Standard of Oxfordshire Travel</title>
+    <meta name="description"
+        content="Official website of Honey Airport Transfers Ltd. Premium Oxford to Heathrow chauffeur services. White-glove excellence, 24/7 emergency dispatch.">
+
+    <link rel="icon" type="image/png" href="assets/logo-xl.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Header Navigation -->
+    <header id="mainHeader">
+        <div class="logo-container">
+            <img src="assets/logo-xl.png" alt="Honey Airport Transfers Ltd Logo">
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#fleet">Our Elite Fleet</a></li>
+            <li><a href="#about">The Elite Standard</a></li>
+            <li><a href="#" onclick="openModal('portal-modal')">Management</a></li>
+        </ul>
+        <div class="cta-container">
+            <a href="https://wa.me/441865999999" class="btn-whatsapp">
+                <i class="fab fa-whatsapp"></i> PRIORITY DISPATCH
+            </a>
+        </div>
+    </header>
+
+    <!-- Global Hero -->
+    <section class="hero" id="home">
+        <img src="assets/honey-hero-ultra.png" class="hero-video-bg" alt="Luxury Jet and Chauffeur">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <p>Honey Airport Transfers Ltd</p>
+            <h1>The Gold <span>Standard</span></h1>
+            <p>Redefining Oxford to Heathrow Chauffeur Excellence</p>
+        </div>
+    </section>
+
+    <!-- Interactive Elite Booking -->
+    <section class="booking-section">
+        <div class="booking-card">
+            <div class="booking-tabs">
+                <div class="tab-btn active">One Way Transfer</div>
+                <div class="tab-btn">Return Transfer</div>
+                <div class="tab-btn">Hourly Chauffeur</div>
+            </div>
+            <form class="booking-form" id="bookingForm">
+                <div class="form-group">
+                    <label>Pickup UK Pincode</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <input type="text" id="pincode" placeholder="e.g. OX1 1AB" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Select Destination</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-plane"></i>
+                        <select id="destination" required>
+                            <option value="Heathrow Terminal 5">Heathrow T5 (LHR)</option>
+                            <option value="Heathrow Terminal 2/3">Heathrow T2 / T3 (LHR)</option>
+                            <option value="Heathrow Terminal 4">Heathrow T4 (LHR)</option>
+                            <option value="London City Airport">London City (LCY)</option>
+                            <option value="Gatwick Airport">Gatwick (LGW)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Schedule Pickup</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-calendar-day"></i>
+                        <input type="datetime-local" id="travelTime" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Elite Vehicle Class</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-car"></i>
+                        <select id="vehicleType" required>
+                            <option value="Economy Saloon (VW Passat / Toyota Prius)">Elite Economy</option>
+                            <option value="Business Class (Mercedes E-Class)">Business Executive</option>
+                            <option value="First Class (Mercedes S-Class)">The Elite - First Class</option>
+                            <option value="Executive XL (Mercedes V-Class)">Chauffeur XL (VIP)</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" class="btn-master">Secure Premium Reservation</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- The Elite Standard Section -->
+    <section class="elite-standard" id="about">
+        <div class="section-title">
+            <h2>The Elite Standard</h2>
+            <div></div>
+        </div>
+
+        <div class="feature-large">
+            <div class="feature-img">
+                <img src="assets/hero-bg-light.png" alt="Luxury Car Service">
+            </div>
+            <div class="feature-text">
+                <h3>Global Range.<br>Local Expertise.</h3>
+                <p>Honey Airport Transfers Ltd specializes in the critical corridor between **Oxford** and the major UK
+                    airports. Our chauffeurs are trained to the highest standard, ensuring every journey is a seamless
+                    extension of your first-class experience.</p>
+                <div style="margin-top: 30px; display: flex; gap: 20px;">
+                    <span style="font-weight: 900; color: var(--accent);">01.</span>
+                    <p><b>Real-Time Flight Tracking</b>: We anticipate delays so you don't have to.</p>
+                </div>
+                <div style="margin-top: 15px; display: flex; gap: 20px;">
+                    <span style="font-weight: 900; color: var(--accent);">02.</span>
+                    <p><b>Pincode Precision</b>: Ultra-accurate pickup points for effortless transfers.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Emergency Dispatch FAB -->
+    <a href="tel:+441865999999" class="fab-emergency">
+        <i class="fas fa-phone-alt"></i> 24/7 EMERGENCY DISPATCH
+    </a>
+
+    <!-- Management Portal Modal -->
+    <div id="portal-modal" class="modal">
+        <div class="modal-content">
+            <span style="position: absolute; top: 25px; right: 25px; cursor: pointer; color: #aaa;"
+                onclick="closeModal('portal-modal')">&times;</span>
+            <h2 style="font-size: 1.8rem; font-weight: 900; margin-bottom: 20px;">ACCESS MANAGEMENT</h2>
+            <div id="portal-login">
+                <p style="color: #666; margin-bottom: 30px;">Enter your credentials to manage elite reservations.</p>
+                <div class="form-group" style="margin-bottom: 20px;">
+                    <label>AUTHENTICATED EMAIL</label>
+                    <div class="input-wrapper">
+                        <input type="email" id="loginEmail" placeholder="e.g. director@elite.com">
+                    </div>
+                </div>
+                <button class="btn-master" onclick="login()" style="padding: 15px;">LOGIN TO PORTAL</button>
+            </div>
+            <div id="portal-data" style="display: none;">
+                <div id="bookingList"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Elite Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h4>HONEY AIRPORT TRANSFERS LTD</h4>
+                <p>Company Number: 17048318</p>
+                <p>Registered in England & Wales</p>
+                <p style="margin-top: 20px; color: #444;">Providing elite airport transfer solutions for over a decade.
+                    The gold standard for Oxford travel.</p>
+            </div>
+            <div>
+                <h5 style="margin-bottom: 25px; letter-spacing: 2px;">SERVICES</h5>
+                <ul style="list-style: none; color: #888; font-size: 0.8rem; line-height: 2;">
+                    <li>Heathrow Transfers</li>
+                    <li>Gatwick Executive</li>
+                    <li>Oxford Chauffeur</li>
+                    <li>Private Jet Meet & Greet</li>
+                </ul>
+            </div>
+            <div>
+                <h5 style="margin-bottom: 25px; letter-spacing: 2px;">CONTACT</h5>
+                <p style="color: #888; font-size: 0.8rem;">24/7 Hotline: +44 1865 999 999</p>
+                <p style="color: #888; font-size: 0.8rem;">Email: dispatch@honeyairporttransfersltd.com</p>
+            </div>
+            <div>
+                <h5 style="margin-bottom: 25px; letter-spacing: 2px;">LEGAL</h5>
+                <ul style="list-style: none; color: #888; font-size: 0.8rem; line-height: 2;">
+                    <li>Privacy Policy</li>
+                    <li>Terms of Service</li>
+                    <li>Cancellation Policy</li>
+                </ul>
+            </div>
+        </div>
+        <div
+            style="border-top: 1px solid #222; padding-top: 40px; text-align: center; color: #444; font-size: 0.7rem; letter-spacing: 2px;">
+            &copy; 2026 HONEY AIRPORT TRANSFERS LIMITED. ALL RIGHTS RESERVED.
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+    <script>
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('mainHeader');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+
+</html>
