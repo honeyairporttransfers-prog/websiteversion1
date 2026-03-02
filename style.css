@@ -272,7 +272,7 @@ header.scrolled .logo-container img {
     appearance: none;
     width: 22px;
     height: 22px;
-    border: 2px solid #00CDE1;
+    border: 2px solid var(--accent);
     border-radius: 4px;
     cursor: pointer;
     background: transparent;
@@ -311,7 +311,7 @@ header.scrolled .logo-container img {
 .btn-counter {
     width: 42px;
     height: 38px;
-    background: #00CDE1;
+    background: var(--accent);
     color: white;
     border: none;
     border-radius: 6px;
@@ -384,7 +384,7 @@ header.scrolled .logo-container img {
 
 /* Main Cyan Button */
 .btn-luxe-book {
-    background: #00CDE1;
+    background: var(--accent);
     color: white;
     border: none;
     padding: 20px;
