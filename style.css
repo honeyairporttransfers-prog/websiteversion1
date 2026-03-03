@@ -135,27 +135,246 @@ input:required::placeholder {
     display: flex;
     justify-content: flex-end;
     margin-left: 30px;
-    /* Breathing room from Management link */
 }
 
-/* Horizontal Booking Section */
-.booking-section {
+.btn-whatsapp {
+    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+    color: white;
+    padding: 16px 32px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 950;
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: var(--transition);
+    border: 3px solid #FFD700;
+    /* Thick Gold Border */
+    box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+    animation: pulse-gold 2s infinite, blink-gold-border 1.5s infinite;
+}
+
+.btn-whatsapp i {
+    font-size: 1.4rem;
+}
+
+@keyframes pulse-gold {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.7);
+    }
+
+    70% {
+        box-shadow: 0 0 0 15px rgba(255, 215, 0, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 215, 0, 0);
+    }
+}
+
+@keyframes blink-gold-border {
+    0% {
+        border-color: #FFD700;
+    }
+
+    50% {
+        border-color: #000;
+    }
+
+    100% {
+        border-color: #FFD700;
+    }
+}
+
+/* Premium Booking Experience Section */
+.booking-experience {
     position: relative;
-    margin-top: -100px;
-    /* Slight overlap with Hero airplane tail */
-    z-index: 100;
-    padding: 0 5% 60px 5%;
+    padding: 120px 5%;
+    background-image: url('assets/honey-luxury-jet-saloon-hero.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    /* Parallax effect */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.booking-experience::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.4));
 }
 
 .booking-card {
-    background: white;
-    padding: 35px;
-    border-radius: 20px;
-    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 10;
+    background: rgba(15, 15, 15, 0.85);
+    /* Dark Deep Glassmorphism */
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 60px;
+    border-radius: 30px;
+    box-shadow: 0 50px 120px rgba(0, 0, 0, 0.8);
     width: 100%;
-    max-width: 1300px;
-    margin: 0 auto;
-    border: 1px solid var(--grey-border);
+    max-width: 1200px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.booking-card h3 {
+    text-align: center;
+    font-size: 2.2rem;
+    font-weight: 950;
+    margin-bottom: 40px;
+    color: var(--accent);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 30px;
+}
+
+.form-col {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.luxe-input-wrapper {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 15px 20px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transition: var(--transition);
+}
+
+.luxe-input-wrapper:focus-within {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--accent);
+}
+
+.luxe-input-wrapper i {
+    color: var(--accent);
+    font-size: 1.2rem;
+}
+
+.luxe-input-wrapper input,
+.luxe-input-wrapper select {
+    background: transparent;
+    border: none;
+    color: white;
+    width: 100%;
+    font-family: var(--font-elite);
+    font-weight: 600;
+    outline: none;
+}
+
+.luxe-input-wrapper input::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.luxe-input-wrapper select option {
+    background: #111;
+    color: white;
+}
+
+.datetime-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.time-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.time-row select {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    height: 55px;
+    border-radius: 12px;
+    padding: 0 15px;
+    color: white;
+    font-family: var(--font-elite);
+    font-weight: 700;
+}
+
+.form-actions {
+    margin-top: 50px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pax-luggage-group {
+    display: flex;
+    gap: 40px;
+}
+
+.mini-stat {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-weight: 800;
+    font-size: 1.1rem;
+}
+
+.mini-stat i {
+    color: var(--accent);
+}
+
+.mini-stat .ctrl-btn {
+    width: 35px;
+    height: 35px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 900;
+    transition: var(--transition);
+}
+
+.mini-stat .ctrl-btn:hover {
+    background: var(--accent);
+    color: black;
+}
+
+.btn-book-submit {
+    background: var(--accent);
+    color: black;
+    border: none;
+    padding: 22px 60px;
+    border-radius: 15px;
+    font-weight: 950;
+    font-size: 1.3rem;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: 0 20px 40px rgba(255, 193, 7, 0.3);
+}
+
+.btn-book-submit:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 30px 60px rgba(255, 193, 7, 0.5);
+    background: #fff;
 }
 
 .form-grid {
@@ -266,21 +485,24 @@ input:required::placeholder {
 
 .fab-emergency {
     position: fixed;
-    bottom: 30px;
-    right: 30px;
+    bottom: 40px;
+    right: 40px;
     background: #d32f2f;
     color: white;
-    padding: 20px 40px;
+    padding: 15px 30px;
+    /* Slimmer for laptop */
     border-radius: 50px;
     text-decoration: none;
-    font-weight: 900;
-    z-index: 1000;
-    box-shadow: 0 10px 30px rgba(211, 47, 47, 0.4);
+    font-weight: 950;
+    z-index: 9999;
+    /* Ensure it stays on top */
+    box-shadow: 0 10px 40px rgba(211, 47, 47, 0.5);
     display: flex;
     align-items: center;
-    gap: 15px;
-    border: 3px solid #FFD700;
-    animation: blink-gold-border 1s infinite;
+    gap: 12px;
+    border: 2px solid #FFD700;
+    font-size: 0.9rem;
+    animation: blink-gold-border 1.5s infinite;
 }
 
 @keyframes blink-gold-border {
@@ -488,24 +710,45 @@ input:required::placeholder {
     justify-content: center;
 }
 
-/* Horizontal Booking Bar Section */
-.booking-section {
+/* Premium Luxury Booking Experience Section */
+.booking-experience {
     position: relative;
-    margin-top: -60px;
-    /* Overlap Hero slightly */
-    z-index: 100;
-    padding: 0 5% 50px 5%;
+    padding: 100px 5% 150px 5%;
+    /* Increased padding */
+    background: url('assets/honey-luxury-jet-saloon-hero.png') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 700px;
+    z-index: 5;
+}
+
+.booking-experience::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 100%);
+    z-index: 1;
 }
 
 .booking-card {
-    background: white;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 10;
+    background: rgba(15, 15, 15, 0.85) !important;
+    /* Force dark background */
+    backdrop-filter: blur(25px) brightness(0.8);
+    -webkit-backdrop-filter: blur(25px) brightness(0.8);
+    padding: 50px;
+    border-radius: 30px;
+    box-shadow: 0 50px 100px rgba(0, 0, 0, 0.7);
     width: 100%;
-    max-width: 1300px;
-    margin: 0 auto;
-    border: 1px solid var(--grey-border);
+    max-width: 1200px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: white !important;
 }
 
 .form-grid {

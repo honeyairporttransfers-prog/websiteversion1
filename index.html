@@ -52,9 +52,10 @@
         </div>
     </section>
 
-    <!-- Interactive Transfer Booking Section -->
-    <section class="booking-section" id="booking-area">
+    <!-- Premium Luxury Booking Experience -->
+    <section class="booking-experience" id="booking-area">
         <div class="booking-card">
+            <h3>Secure Your Elite Transfer</h3>
             <form class="booking-form" id="bookingForm">
                 <div class="form-grid">
                     <!-- Column 1: Locations -->
@@ -82,12 +83,16 @@
                         </div>
                     </div>
 
-                    <!-- Column 2: Date/Time/Class -->
+                    <!-- Column 2: Date & Class -->
                     <div class="form-col">
-                        <div class="datetime-combo">
-                            <input type="date" id="travelDate" required>
-                            <div class="time-capsule">
+                        <div class="datetime-stack">
+                            <div class="luxe-input-wrapper">
+                                <i class="fas fa-calendar-alt"></i>
+                                <input type="date" id="travelDate" required>
+                            </div>
+                            <div class="time-row">
                                 <select id="travelHour" required>
+                                    <option value="" disabled selected>Hour</option>
                                     <option value="00">00</option>
                                     <option value="01">01</option>
                                     <option value="02">02</option>
@@ -114,6 +119,7 @@
                                     <option value="23">23</option>
                                 </select>
                                 <select id="travelMinute" required>
+                                    <option value="" disabled selected>Min</option>
                                     <option value="00">00</option>
                                     <option value="15">15</option>
                                     <option value="30">30</option>
@@ -135,7 +141,7 @@
                         </div>
                     </div>
 
-                    <!-- Column 3: Contact -->
+                    <!-- Column 3: Contact & Counters -->
                     <div class="form-col">
                         <div class="luxe-input-wrapper">
                             <i class="fas fa-user-circle"></i>
@@ -145,31 +151,31 @@
                             <i class="fas fa-phone"></i>
                             <input type="tel" id="passengerPhone" placeholder="Phone Number *" required>
                         </div>
+                        <div style="margin-top: auto; display: flex; gap: 30px; justify-content: center;">
+                            <div class="mini-stat">
+                                <i class="fas fa-users"></i>
+                                <span id="passengerDisplay">1</span>
+                                <button type="button" class="ctrl-btn"
+                                    onclick="updateCounter('passengerCount', 1)">+</button>
+                                <input type="hidden" id="passengerCount" value="1">
+                            </div>
+                            <div class="mini-stat">
+                                <i class="fas fa-suitcase"></i>
+                                <span id="luggageDisplay">1</span>
+                                <button type="button" class="ctrl-btn"
+                                    onclick="updateCounter('luggageCount', 1)">+</button>
+                                <input type="hidden" id="luggageCount" value="1">
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="form-bottom-bar">
-                    <div class="pax-luggage-group">
-                        <div class="mini-counter">
-                            <i class="fas fa-users"></i>
-                            <span id="passengerDisplay">1</span>
-                            <div class="ctrl-btns">
-                                <button type="button" onclick="updateCounter('passengerCount', -1)">-</button>
-                                <button type="button" onclick="updateCounter('passengerCount', 1)">+</button>
-                            </div>
-                            <input type="hidden" id="passengerCount" value="1">
-                        </div>
-                        <div class="mini-counter">
-                            <i class="fas fa-suitcase"></i>
-                            <span id="luggageDisplay">1</span>
-                            <div class="ctrl-btns">
-                                <button type="button" onclick="updateCounter('luggageCount', -1)">-</button>
-                                <button type="button" onclick="updateCounter('luggageCount', 1)">+</button>
-                            </div>
-                            <input type="hidden" id="luggageCount" value="1">
-                        </div>
-                    </div>
-                    <button type="submit" class="btn-book-action">SECURE TRANSFER BOOKING</button>
+                <div class="form-actions">
+                    <p style="font-size: 0.9rem; color: rgba(255,255,255,0.6); max-width: 450px;">
+                        <i class="fas fa-shield-alt" style="color: var(--accent);"></i> Secure 256-bit encrypted
+                        booking. Our team will contact you shortly to confirm your elite transfer.
+                    </p>
+                    <button type="submit" class="btn-book-submit">SECURE TRANSFER BOOKING</button>
                 </div>
             </form>
         </div>
@@ -184,8 +190,8 @@
 
         <div class="fleet-intro">
             <p>Whether you are booking an airport transfer, inter-city ride, or require a chauffeur by the hour, you can
-                rely on us to provide an unrivalled service from our trusted partners around the world. <b>We have been
-                    operating for over 30 years</b>, setting the gold standard in premium transportation.</p>
+                rely on us to provide an unrivalled service from our trusted partners around the world, setting the gold
+                standard in premium transportation.</p>
         </div>
 
         <div class="fleet-grid">
