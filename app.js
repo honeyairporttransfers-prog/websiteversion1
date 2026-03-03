@@ -46,17 +46,19 @@ document.getElementById('bookingForm').addEventListener('submit', (e) => {
     }
 });
 
-function selectFleetClass(vehicle) {
-    const vehicleSelect = document.getElementById('vehicleType');
-    vehicleSelect.value = vehicle;
+function selectFleetClass(vehicle, element) {
+    const vehicleInput = document.getElementById('vehicleType');
+    vehicleInput.value = vehicle;
 
-    // Smooth scroll to form
-    const homeSection = document.getElementById('home');
-    homeSection.scrollIntoView({ behavior: 'smooth' });
+    // Highlight visual selection if grid exists
+    if (element) {
+        document.querySelectorAll('.vehicle-option').forEach(opt => opt.classList.remove('selected'));
+        element.classList.add('selected');
+    }
 
     // Visual feedback on form
     const bookingCard = document.querySelector('.booking-card');
-    bookingCard.style.boxShadow = '0 0 50px rgba(255, 193, 7, 0.5)';
+    bookingCard.style.boxShadow = '0 0 50px rgba(255, 193, 7, 0.4)';
     setTimeout(() => {
         bookingCard.style.boxShadow = '';
     }, 2000);

@@ -68,7 +68,6 @@
                             <i class="fas fa-map-marker-alt"></i>
                             <select id="destination" required>
                                 <option value="" disabled selected>To: Airport / Street / City</option>
-                                <option value="Heathrow Terminal 1">Heathrow Terminal 1</option>
                                 <option value="Heathrow Terminal 2">Heathrow Terminal 2</option>
                                 <option value="Heathrow Terminal 3">Heathrow Terminal 3</option>
                                 <option value="Heathrow Terminal 4">Heathrow Terminal 4</option>
@@ -83,14 +82,14 @@
                         </div>
                     </div>
 
-                    <!-- Column 2: Date & Class -->
+                    <!-- Column 2: Date & Time -->
                     <div class="form-col">
-                        <div class="datetime-stack">
-                            <div class="luxe-input-wrapper">
-                                <i class="fas fa-calendar-alt"></i>
-                                <input type="date" id="travelDate" required>
-                            </div>
-                            <div class="time-row">
+                        <div class="luxe-input-wrapper">
+                            <i class="fas fa-calendar-alt"></i>
+                            <input type="date" id="travelDate" required>
+                        </div>
+                        <div class="time-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                            <div class="luxe-input-wrapper" style="padding: 10px;">
                                 <select id="travelHour" required>
                                     <option value="" disabled selected>Hour</option>
                                     <option value="00">00</option>
@@ -118,6 +117,8 @@
                                     <option value="22">22</option>
                                     <option value="23">23</option>
                                 </select>
+                            </div>
+                            <div class="luxe-input-wrapper" style="padding: 10px;">
                                 <select id="travelMinute" required>
                                     <option value="" disabled selected>Min</option>
                                     <option value="00">00</option>
@@ -127,21 +128,9 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="luxe-input-wrapper">
-                            <i class="fas fa-car-side"></i>
-                            <select id="vehicleType" required>
-                                <option value="" disabled selected>Choosing Class *</option>
-                                <option value="Economy Saloon">Economy Saloon</option>
-                                <option value="Business Class Saloon">Business Class Saloon</option>
-                                <option value="First Class Saloon">First Class Saloon</option>
-                                <option value="Economy XL">Economy XL (Up to 5 Pax)</option>
-                                <option value="Business Class XL">Business Class XL (Up to 7 Pax)</option>
-                                <option value="First Class XL">First Class XL (Jet Class)</option>
-                            </select>
-                        </div>
                     </div>
 
-                    <!-- Column 3: Contact & Counters -->
+                    <!-- Column 3: Contact -->
                     <div class="form-col">
                         <div class="luxe-input-wrapper">
                             <i class="fas fa-user-circle"></i>
@@ -151,30 +140,55 @@
                             <i class="fas fa-phone"></i>
                             <input type="tel" id="passengerPhone" placeholder="Phone Number *" required>
                         </div>
-                        <div style="margin-top: auto; display: flex; gap: 30px; justify-content: center;">
-                            <div class="mini-stat">
-                                <i class="fas fa-users"></i>
-                                <span id="passengerDisplay">1</span>
-                                <button type="button" class="ctrl-btn"
-                                    onclick="updateCounter('passengerCount', 1)">+</button>
-                                <input type="hidden" id="passengerCount" value="1">
-                            </div>
-                            <div class="mini-stat">
-                                <i class="fas fa-suitcase"></i>
-                                <span id="luggageDisplay">1</span>
-                                <button type="button" class="ctrl-btn"
-                                    onclick="updateCounter('luggageCount', 1)">+</button>
-                                <input type="hidden" id="luggageCount" value="1">
-                            </div>
+                    </div>
+
+                    <!-- Row 2: Visual Vehicle Selector -->
+                    <div class="booking-vehicle-grid">
+                        <input type="hidden" id="vehicleType" value="Business Class Saloon" required>
+
+                        <div class="vehicle-option" onclick="selectFleetClass('Economy Saloon', this)">
+                            <img src="https://cdn.prod.website-files.com/66113eb5d77d90c9967ea0b7/678131218902a9e8a42309f4_Frame%2041.png"
+                                alt="Economy">
+                            <h4>Economy</h4>
+                            <p>Up to 3 Pax</p>
+                        </div>
+                        <div class="vehicle-option selected" onclick="selectFleetClass('Business Class Saloon', this)">
+                            <img src="https://cdn.prod.website-files.com/66113eb5d77d90c9967ea0b7/66113eb5d77d90c9967ea114_Business-Class-Saloon.jpg"
+                                alt="Business">
+                            <h4>Business Class</h4>
+                            <p>Up to 3 Pax</p>
+                        </div>
+                        <div class="vehicle-option" onclick="selectFleetClass('First Class Saloon', this)">
+                            <img src="https://cdn.prod.website-files.com/66113eb5d77d90c9967ea0b7/66113eb5d77d90c9967ea0bb_First-Class-Saloon.jpg"
+                                alt="First Class">
+                            <h4>First Class</h4>
+                            <p>Up to 3 Pax</p>
+                        </div>
+                        <div class="vehicle-option" onclick="selectFleetClass('Business Class XL', this)">
+                            <img src="https://cdn.prod.website-files.com/65f1de56a0a49e62ee75154c/65f4a8ec37d999622ac72c5f_First-Class-XL.jpg"
+                                alt="Executive XL">
+                            <h4>Executive XL</h4>
+                            <p>Up to 7 Pax</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="form-actions">
-                    <p style="font-size: 0.9rem; color: rgba(255,255,255,0.6); max-width: 450px;">
-                        <i class="fas fa-shield-alt" style="color: var(--accent);"></i> Secure 256-bit encrypted
-                        booking. Our team will contact you shortly to confirm your elite transfer.
-                    </p>
+                    <div style="display: flex; gap: 40px;">
+                        <div class="mini-stat">
+                            <i class="fas fa-users"></i>
+                            <span id="passengerDisplay">1</span>
+                            <button type="button" class="ctrl-btn"
+                                onclick="updateCounter('passengerCount', 1)">+</button>
+                            <input type="hidden" id="passengerCount" value="1">
+                        </div>
+                        <div class="mini-stat">
+                            <i class="fas fa-suitcase"></i>
+                            <span id="luggageDisplay">1</span>
+                            <button type="button" class="ctrl-btn" onclick="updateCounter('luggageCount', 1)">+</button>
+                            <input type="hidden" id="luggageCount" value="1">
+                        </div>
+                    </div>
                     <button type="submit" class="btn-book-submit">SECURE TRANSFER BOOKING</button>
                 </div>
             </form>
